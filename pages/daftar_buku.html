@@ -45,7 +45,7 @@
     <div class="container mx-auto mt-5">
         <div class="d-flex justify-content-between align-items-center mb-3">
             <h5 class="fw-bold mb-0">Daftar Buku</h5>
-            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalTambahBuku">
+            <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#modalTambahBuku">
                 + Tambah Buku
             </button>
         </div>
@@ -121,6 +121,61 @@
             </div>
         </div>
     </div>
+
+    <div class="modal fade" id="modalEditBuku" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Edit Buku</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <form>
+                    <div class="modal-body">
+                        <input type="hidden" id="editId">
+                        <div class="mb-3">
+                            <label class="form-label">Judul Buku</label>
+                            <input type="text" class="form-control" id="editJudul" placeholder="Masukkan judul buku">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Pengarang</label>
+                            <input type="text" class="form-control" id="editPengarang" placeholder="Nama pengarang">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">ISBN</label>
+                            <input type="text" class="form-control" id="editIsbn" placeholder="Contoh: 978-001">
+                        </div>
+                        <div class="row">
+                            <div class="col mb-3">
+                                <label class="form-label">Kategori</label>
+                                <select class="form-select" id="editKategori">
+                                    <option value="">Pilih kategori...</option>
+                                    <option>Teknologi</option>
+                                    <option>Matematika</option>
+                                    <option>Sains</option>
+                                    <option>Bahasa</option>
+                                    <option>Lainnya</option>
+                                </select>
+                            </div>
+                            <div class="col mb-3">
+                                <label class="form-label">Tahun Terbit</label>
+                                <input type="number" class="form-control" id="editTahunTerbit" placeholder="2023">
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Stok</label>
+                            <input type="number" class="form-control" id="editStok" placeholder="0">
+                        </div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                        <button type="button" class="btn btn-primary" onclick="simpanEditBuku()"
+                            data-bs-dismiss="modal">Simpan</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
     <script>
         document.addEventListener("DOMContentLoaded", () => {
             renderTabelBuku();
@@ -132,6 +187,28 @@
             document.getElementById("kategori").value = "";
             document.getElementById("tahunTerbit").value = "";
             document.getElementById("stok").value = "";
+        });
+
+        document.getElementById("modalEditBuku").addEventListener("hidden.bs.modal", () => {
+            document.getElementById("editId").value = "";
+            document.getElementById("editJudul").value = "";
+            document.getElementById("editPengarang").value = "";
+            document.getElementById("editIsbn").value = "";
+            document.getElementById("editKategori").value = "";
+            document.getElementById("editTahunTerbit").value = "";
+            document.getElementById("editStok").value = "";
+        });
+
+        // Event listener untuk tombol edit
+        document.addEventListener("click", (e) => {
+            if (e.target.classList.contains("btn-edit")) {
+                const id = parseInt(e.target.dataset.id);
+                openEditModal(id);
+            }
+            if (e.target.classList.contains("btn-hapus")) {
+                const id = parseInt(e.target.dataset.id);
+                hapusBuku(id);
+            }
         });
     </script>
     <script src="./../js/data.js"></script>
