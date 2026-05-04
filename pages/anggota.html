@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Halaman Anggota</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+        crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+            <a class="navbar-brand fw-bold" href="index.html">siPerpus</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="buku.html">Buku</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="anggota.html">Anggota</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="peminjaman.html">Peminjaman</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="pengembalian.html">Pengembalian</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mx-auto mt-5">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <h5 class="fw-bold mb-0">Daftar Anggota</h5>
+            <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#modalTambahAnggota">
+                + Tambah Anggota
+            </button>
+        </div>
+        <table class="table table-info table-striped">
+            <thead>
+                <tr>
+                    <th class="text-center" style="font-size: 0.8rem;">#</th>
+                    <th class="text-center text-uppercase" style="font-size: 0.8rem;">Nama</th>
+                    <th class="text-center text-uppercase" style="font-size: 0.8rem;">Email</th>
+                    <th class="text-center text-uppercase" style="font-size: 0.8rem;">No. HP</th>
+                    <th class="text-center text-uppercase" style="font-size: 0.8rem;">Alamat</th>
+                    <th class="text-center text-uppercase" style="font-size: 0.8rem;">Aksi</th>
+                </tr>
+            </thead>
+            <tbody id="tabel-anggota"></tbody>
+        </table>
+    </div>
+
+    <!-- Modal Tambah -->
+    <div class="modal fade" id="modalTambahAnggota" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Tambah Anggota</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <form>
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <label class="form-label">Nama</label>
+                            <input type="text" class="form-control" id="nama" placeholder="Nama lengkap">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Email</label>
+                            <input type="email" class="form-control" id="email" placeholder="email@contoh.com">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">No. HP</label>
+                            <input type="text" class="form-control" id="noHp" placeholder="08xxxxxxxxxx">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Alamat</label>
+                            <textarea class="form-control" id="alamat" rows="2" placeholder="Alamat lengkap"></textarea>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                        <button type="button" class="btn btn-primary" onclick="tambahAnggota()" data-bs-dismiss="modal">+ Tambah</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Edit -->
+    <div class="modal fade" id="modalEditAnggota" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Edit Anggota</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <form>
+                    <div class="modal-body">
+                        <input type="hidden" id="editId">
+                        <div class="mb-3">
+                            <label class="form-label">Nama</label>
+                            <input type="text" class="form-control" id="editNama" placeholder="Nama lengkap">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Email</label>
+                            <input type="email" class="form-control" id="editEmail" placeholder="email@contoh.com">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">No. HP</label>
+                            <input type="text" class="form-control" id="editNoHp" placeholder="08xxxxxxxxxx">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Alamat</label>
+                            <textarea class="form-control" id="editAlamat" rows="2" placeholder="Alamat lengkap"></textarea>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                        <button type="button" class="btn btn-primary" onclick="simpanEditAnggota()" data-bs-dismiss="modal">Simpan</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            renderTabelAnggota();
+        });
+
+        document.getElementById("modalTambahAnggota").addEventListener("hidden.bs.modal", () => {
+            document.getElementById("nama").value = "";
+            document.getElementById("email").value = "";
+            document.getElementById("noHp").value = "";
+            document.getElementById("alamat").value = "";
+        });
+
+        document.getElementById("modalEditAnggota").addEventListener("hidden.bs.modal", () => {
+            document.getElementById("editId").value = "";
+            document.getElementById("editNama").value = "";
+            document.getElementById("editEmail").value = "";
+            document.getElementById("editNoHp").value = "";
+            document.getElementById("editAlamat").value = "";
+        });
+
+        document.addEventListener("click", (e) => {
+            if (e.target.classList.contains("btn-edit")) {
+                const id = parseInt(e.target.dataset.id);
+                openEditModal(id);
+            }
+            if (e.target.classList.contains("btn-hapus")) {
+                const id = parseInt(e.target.dataset.id);
+                hapusAnggota(id);
+            }
+        });
+    </script>
+    <script src="./../js/data.js"></script>
+    <script src="./../js/anggota.js"></script>
+</body>
+
+</html>

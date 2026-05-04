@@ -27,3 +27,34 @@ let dataBuku = [
         stok: 7
     },
 ];
+
+let dataAnggota = [
+    {
+        id: 1,
+        nama: "Andi Saputra",
+        email: "andi@mail.com",
+        noHp: "081234567890",
+        alamat: "Jl. Merdeka No. 1",
+    },
+    {
+        id: 2,
+        nama: "Rina Dewi",
+        email: "rina@mail.com",
+        noHp: "085678901234",
+        alamat: "Jl. Sudirman No. 2",
+    },
+    {
+        id: 3,
+        nama: "Siti Rahayu",
+        email: "siti@mail.com",
+        noHp: "089012345678",
+        alamat: "Jl. Gatot Subroto No. 4",
+    },
+    {
+        id: 4,
+        nama: "Dewi Lestari",
+        email: "dewi@mail.com",
+        noHp: "082345678901",
+        alamat: "Jl. Ahmad Yani No. 5",
+    },
+];
