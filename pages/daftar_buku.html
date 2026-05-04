@@ -14,74 +14,66 @@
 
 <body>
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="index.html">siPerpus</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-                aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="index.html">Dashboard</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="daftar_buku.html">Buku</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                            aria-expanded="false">
-                            Dropdown
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Action</a></li>
-                            <li><a class="dropdown-item" href="#">Another action</a></li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                            <li><a class="dropdown-item" href="#">Something else here</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link disabled" aria-disabled="true">Disabled</a>
-                    </li>
-                </ul>
-                <form class="d-flex" role="search">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
-                    <button class="btn btn-outline-success" type="submit">Search</button>
-                </form>
-            </div>
+    <div class="container-fluid">
+        <a class="navbar-brand fw-bold" href="index.html">siPerpus</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+            data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+            aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html">Dashboard</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="daftar_buku.html">Buku</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="anggota.html">Anggota</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="peminjaman.html">Peminjaman</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="pengembalian.html">Pengembalian</a>
+                </li>
+            </ul>
         </div>
-    </nav>
+    </div>
+</nav>
 
     <div class="container mx-auto mt-5">
         <table class="table table-info table-striped">
             <thead>
                 <tr>
-                    <th class="text-center">ID</th>
-                    <th class="text-center">Judul Buku</th>
-                    <th class="text-center">Penulis</th>
-                    <th class="text-center">Penerbit</th>
-                    <th class="text-center">Status</th>
-                    <th class="text-center">Aksi</th>
+                    <th class="text-center" style="font-size: 0.8rem;">#</th>
+                    <th class="text-center text-uppercase" style="font-size: 0.8rem;">Judul Buku</th>
+                    <th class="text-center text-uppercase" style="font-size: 0.8rem;">Penulis</th>
+                    <th class="text-center text-uppercase" style="font-size: 0.8rem;">ISBN</th>
+                    <th class="text-center text-uppercase" style="font-size: 0.8rem;">Kategori</th>
+                    <th class="text-center text-uppercase" style="font-size: 0.8rem;">Tahun Terbit</th>
+                    <th class="text-center text-uppercase" style="font-size: 0.8rem;">Stok</th>
+                    <th class="text-center text-uppercase" style="font-size: 0.8rem;">Aksi</th>
                 </tr>
             </thead>
-            <tbody>
-                <tr>
-                    <td class="text-center">1</td>
-                    <td>Pemrograman Web</td>
-                    <td class="text-center">Budi Raharjo</td>
-                    <td class="text-center">Gramedia</td>
-                    <td class="text-center">Tersedia</td>
-                    <td class="text-center">
-                        <a href="edit_buku.html" class="btn btn-warning">Edit</a>
-                        <button type="button" class="btn btn-danger">Hapus</button>
-                    </td>
-                </tr>
+            <tbody id="tabel-buku">
+                
             </tbody>
         </table>
     </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            renderTabelBuku();
+        });
+    </script>
+    <script src="./../js/data.js"></script>
+    <script src="./../js/buku.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.min.js"
+        integrity="sha384-G/EV+4j2dNv+tEPo3++6LCgdCROaejBqfUeNjuKAiuXbjrxilcCdDz6ZAVfHWe1Y"
+        crossorigin="anonymous"></script>
 </body>
-
 </html>
