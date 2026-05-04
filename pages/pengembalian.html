@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Halaman Pengembalian</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+        crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+            <a class="navbar-brand fw-bold" href="index.html">siPerpus</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="buku.html">Buku</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="anggota.html">Anggota</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="peminjaman.html">Peminjaman</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="pengembalian.html">Pengembalian</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mx-auto mt-5">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <h5 class="fw-bold mb-0">Daftar Pengembalian</h5>
+            <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#modalTambahPengembalian">
+                + Tambah Pengembalian
+            </button>
+        </div>
+        <table class="table table-info table-striped">
+            <thead>
+                <tr>
+                    <th class="text-center" style="font-size: 0.8rem;">#</th>
+                    <th class="text-center text-uppercase" style="font-size: 0.8rem;">Anggota</th>
+                    <th class="text-center text-uppercase" style="font-size: 0.8rem;">Judul Buku</th>
+                    <th class="text-center text-uppercase" style="font-size: 0.8rem;">Tgl Pinjam</th>
+                    <th class="text-center text-uppercase" style="font-size: 0.8rem;">Tgl Pengembalian</th>
+                    <th class="text-center text-uppercase" style="font-size: 0.8rem;">Denda</th>
+                </tr>
+            </thead>
+            <tbody id="tabel-pengembalian"></tbody>
+        </table>
+    </div>
+
+    <!-- Modal Tambah -->
+    <div class="modal fade" id="modalTambahPengembalian" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Tambah Pengembalian</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <form>
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <label class="form-label">ID Peminjaman</label>
+                            <select class="form-select" id="idPeminjaman"></select>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Tanggal Pengembalian</label>
+                            <input type="date" class="form-control" id="tanggalKembaliAktual">
+                        </div>
+                        <div id="infoPeminjaman" class="alert alert-info d-none">
+                            <small>
+                                <strong>Anggota:</strong> <span id="infoAnggota"></span><br>
+                                <strong>Buku:</strong> <span id="infoBuku"></span><br>
+                                <strong>Tgl Wajib Kembali:</strong> <span id="infoTglKembali"></span><br>
+                                <strong>Denda:</strong> <span id="infoDenda"></span>
+                            </small>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                        <button type="button" class="btn btn-primary" onclick="tambahPengembalian()" data-bs-dismiss="modal">+ Proses</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            renderTabelPengembalian();
+            populateDropdownPeminjaman();
+        });
+
+        document.getElementById("modalTambahPengembalian").addEventListener("hidden.bs.modal", () => {
+            document.getElementById("idPeminjaman").value          = "";
+            document.getElementById("tanggalKembaliAktual").value  = "";
+            document.getElementById("infoPeminjaman").classList.add("d-none");
+        });
+
+        // Auto hitung denda saat pilih peminjaman atau ubah tanggal
+        document.addEventListener("change", (e) => {
+            if (e.target.id === "idPeminjaman" || e.target.id === "tanggalKembaliAktual") {
+                tampilkanInfoDenda();
+            }
+        });
+
+        document.addEventListener("click", (e) => {
+            if (e.target.classList.contains("btn-hapus")) {
+                const id = parseInt(e.target.dataset.id);
+                hapusPengembalian(id);
+            }
+        });
+    </script>
+    <script src="../js/data.js"></script>
+    <script src="../js/pengembalian.js"></script>
+</body>
+
+</html>
