@@ -22,3 +22,23 @@ function renderTabelBuku() {
 
     tbody.innerHTML = html;
 }
+
+function tambahBuku() {
+    const judul = document.getElementById("judul").value.trim();
+    const pengarang = document.getElementById("pengarang").value.trim();
+    const isbn = document.getElementById("isbn").value.trim();
+    const kategori = document.getElementById("kategori").value;
+    const tahunTerbit = document.getElementById("tahunTerbit").value.trim();
+    const stok = parseInt(document.getElementById("stok").value);
+
+    dataBuku.push({
+        id: dataBuku.length + 1,
+        judul,
+        pengarang,
+        isbn,
+        kategori,
+        tahunTerbit,
+        stok
+    });
+    renderTabelBuku();
+}

@@ -14,36 +14,41 @@
 
 <body>
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
-    <div class="container-fluid">
-        <a class="navbar-brand fw-bold" href="index.html">siPerpus</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-            data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-            aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-                    <a class="nav-link" href="index.html">Dashboard</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="daftar_buku.html">Buku</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="anggota.html">Anggota</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="peminjaman.html">Peminjaman</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="pengembalian.html">Pengembalian</a>
-                </li>
-            </ul>
+        <div class="container-fluid">
+            <a class="navbar-brand fw-bold" href="index.html">siPerpus</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="daftar_buku.html">Buku</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="anggota.html">Anggota</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="peminjaman.html">Peminjaman</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="pengembalian.html">Pengembalian</a>
+                    </li>
+                </ul>
+            </div>
         </div>
-    </div>
-</nav>
-
+    </nav>
     <div class="container mx-auto mt-5">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <h5 class="fw-bold mb-0">Daftar Buku</h5>
+            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalTambahBuku">
+                + Tambah Buku
+            </button>
+        </div>
         <table class="table table-info table-striped">
             <thead>
                 <tr>
@@ -58,13 +63,75 @@
                 </tr>
             </thead>
             <tbody id="tabel-buku">
-                
+
             </tbody>
         </table>
+    </div>
+    <div class="modal fade" id="modalTambahBuku" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Tambah Buku</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <form>
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <label class="form-label">Judul Buku</label>
+                            <input type="text" class="form-control" id="judul" placeholder="Masukkan judul buku">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Pengarang</label>
+                            <input type="text" class="form-control" id="pengarang" placeholder="Nama pengarang">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">ISBN</label>
+                            <input type="text" class="form-control" id="isbn" placeholder="Contoh: 978-001">
+                        </div>
+                        <div class="row">
+                            <div class="col mb-3">
+                                <label class="form-label">Kategori</label>
+                                <select class="form-select" id="kategori">
+                                    <option value="">Pilih kategori...</option>
+                                    <option>Teknologi</option>
+                                    <option>Matematika</option>
+                                    <option>Sains</option>
+                                    <option>Bahasa</option>
+                                    <option>Lainnya</option>
+                                </select>
+                            </div>
+                            <div class="col mb-3">
+                                <label class="form-label">Tahun Terbit</label>
+                                <input type="number" class="form-control" id="tahunTerbit" placeholder="2023">
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Stok</label>
+                            <input type="number" class="form-control" id="stok" placeholder="0">
+                        </div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                        <button type="button" class="btn btn-primary" id="btn-submit" onclick="tambahBuku()"
+                            data-bs-dismiss="modal">+
+                            Tambah</button>
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>
     <script>
         document.addEventListener("DOMContentLoaded", () => {
             renderTabelBuku();
+        });
+        document.getElementById("modalTambahBuku").addEventListener("hidden.bs.modal", () => {
+            document.getElementById("judul").value = "";
+            document.getElementById("pengarang").value = "";
+            document.getElementById("isbn").value = "";
+            document.getElementById("kategori").value = "";
+            document.getElementById("tahunTerbit").value = "";
+            document.getElementById("stok").value = "";
         });
     </script>
     <script src="./../js/data.js"></script>
@@ -76,4 +143,5 @@
         integrity="sha384-G/EV+4j2dNv+tEPo3++6LCgdCROaejBqfUeNjuKAiuXbjrxilcCdDz6ZAVfHWe1Y"
         crossorigin="anonymous"></script>
 </body>
+
 </html>
