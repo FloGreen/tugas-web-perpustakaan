@@ -49,7 +49,7 @@
                     <div class="card text-white bg-primary">
                         <div class="card-body">
                             <h6 class="card-title">Total Buku</h6>
-                            <h2 class="fw-bold" id="total-buku">120</h2>
+                            <h2 class="fw-bold" id="total-buku">0</h2>
                         </div>
                     </div>
                 </div>
@@ -57,7 +57,7 @@
                     <div class="card text-white bg-danger">
                         <div class="card-body">
                             <h6 class="card-title">Dipinjam</h6>
-                            <h2 class="fw-bold">34</h2>
+                            <h2 class="fw-bold" id="total-dipinjam">0</h2>
                         </div>
                     </div>
                 </div>
@@ -65,29 +65,35 @@
                     <div class="card text-white bg-warning">
                         <div class="card-body">
                             <h6 class="card-title">Total Anggota</h6>
-                            <h2 class="fw-bold">85</h2>
+                            <h2 class="fw-bold" id="total-anggota">0</h2>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="card text-white bg-success">
                         <div class="card-body">
-                            <h6 class="card-title">Tersedia</h6>
-                            <h2 class="fw-bold">86</h2>
+                            <h6 class="card-title">Dikembalikan</h6>
+                            <h2 class="fw-bold" id="total-kembali">0</h2>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <div class="container text-center mx-auto mt-5">
-
-    </div>
     <script src="./../js/data.js"></script>
     <script>
         document.addEventListener("DOMContentLoaded", () => {
             const totalBuku = document.getElementById('total-buku');
             totalBuku.innerHTML = dataBuku.length;
+
+            const totalAnggota = document.getElementById('total-anggota');
+            totalAnggota.innerHTML = dataAnggota.length;
+
+            const totalDipinjam = document.getElementById('total-dipinjam');
+            totalDipinjam.innerHTML = dataPeminjaman.length;
+
+            const totalPengembalian = document.getElementById('total-kembali');
+            totalPengembalian.innerHTML = dataPengembalian.length;
         });
     </script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
