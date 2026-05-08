@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Perpustakaan Universitas - Beranda</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header class="navbar">
+      <div class="container navbar-inner">
+        <a href="index.html" class="brand">
+          <span class="brand-logo"></span>
+          <span>Perpustakaan Universitas</span>
+        </a>
+        <nav class="nav-links">
+          <a class="active" href="index.html">Beranda</a>
+          <a href="#koleksi">Koleksi</a>
+          <a href="#layanan">Layanan</a>
+          <a href="#agenda">Agenda</a>
+          <a href="dashboard.html">Dashboard</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="container hero-grid">
+          <div>
+            <span class="badge">Perpustakaan Digital Kampus</span>
+            <h1>Pusat Literasi dan Riset untuk Mahasiswa Modern</h1>
+            <p>
+              Temukan ribuan koleksi buku, jurnal, dan e-resources untuk mendukung
+              pembelajaran, penelitian, serta pengembangan akademik Anda.
+            </p>
+            <div class="hero-cta">
+              <a class="btn btn-primary" href="#koleksi">Jelajahi Koleksi</a>
+              <a class="btn btn-secondary" href="dashboard.html">Masuk Dashboard</a>
+            </div>
+          </div>
+          <div class="hero-card">
+            <h3 class="section-title">Ringkasan Koleksi</h3>
+            <p class="section-subtitle">Data koleksi aktif tahun akademik 2026.</p>
+            <div class="stats">
+              <div class="stat-item">
+                <h4>12.450+</h4>
+                <p>Buku Cetak</p>
+              </div>
+              <div class="stat-item">
+                <h4>8.900+</h4>
+                <p>E-Book</p>
+              </div>
+              <div class="stat-item">
+                <h4>2.150+</h4>
+                <p>Jurnal</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="search-bar">
+        <div class="container">
+          <form class="search-panel">
+            <input class="input" type="text" placeholder="Cari judul, penulis, atau ISBN..." />
+            <select class="select">
+              <option>Semua Fakultas</option>
+              <option>Teknik</option>
+              <option>Ekonomi</option>
+              <option>Hukum</option>
+            </select>
+            <select class="select">
+              <option>Semua Jenis</option>
+              <option>Buku</option>
+              <option>Jurnal</option>
+              <option>Skripsi</option>
+            </select>
+            <select class="select">
+              <option>Tahun Terbaru</option>
+              <option>2026</option>
+              <option>2025</option>
+              <option>2024</option>
+            </select>
+            <button class="btn btn-primary" type="button">Cari</button>
+          </form>
+        </div>
+      </section>
+
+      <section id="koleksi" class="section">
+        <div class="container">
+          <h2 class="section-title">Koleksi Populer</h2>
+          <p class="section-subtitle">
+            Pilihan buku yang paling sering dipinjam dan direkomendasikan oleh dosen.
+          </p>
+          <div class="books-grid">
+            <article class="book-card">
+              <div class="book-cover"></div>
+              <div class="book-body">
+                <h3 class="book-title">Dasar-Dasar Kecerdasan Buatan</h3>
+                <p class="book-meta">A. Pratama • Informatika</p>
+                <div class="book-footer">
+                  <span class="availability">Tersedia</span>
+                  <a href="#" class="btn btn-secondary">Detail</a>
+                </div>
+              </div>
+            </article>
+
+            <article class="book-card">
+              <div class="book-cover"></div>
+              <div class="book-body">
+                <h3 class="book-title">Metodologi Penelitian Ilmiah</h3>
+                <p class="book-meta">S. Ramadhan • Umum</p>
+                <div class="book-footer">
+                  <span class="availability unavailable">Dipinjam</span>
+                  <a href="#" class="btn btn-secondary">Detail</a>
+                </div>
+              </div>
+            </article>
+
+            <article class="book-card">
+              <div class="book-cover"></div>
+              <div class="book-body">
+                <h3 class="book-title">Manajemen Keuangan Modern</h3>
+                <p class="book-meta">N. Kencana • Ekonomi</p>
+                <div class="book-footer">
+                  <span class="availability">Tersedia</span>
+                  <a href="#" class="btn btn-secondary">Detail</a>
+                </div>
+              </div>
+            </article>
+
+            <article class="book-card">
+              <div class="book-cover"></div>
+              <div class="book-body">
+                <h3 class="book-title">Hukum Perdata Indonesia</h3>
+                <p class="book-meta">R. Prawira • Hukum</p>
+                <div class="book-footer">
+                  <span class="availability">Tersedia</span>
+                  <a href="#" class="btn btn-secondary">Detail</a>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="layanan" class="section">
+        <div class="container panel-grid">
+          <article class="panel">
+            <h3>Layanan Unggulan</h3>
+            <div class="announcement">
+              <strong>Ruang Baca 24 Jam</strong>
+              <span>Area belajar nyaman dengan akses Wi-Fi dan stop kontak.</span>
+            </div>
+            <div class="announcement">
+              <strong>Konsultasi Referensi</strong>
+              <span>Bantuan pencarian jurnal dan sitasi oleh pustakawan.</span>
+            </div>
+            <div class="announcement">
+              <strong>Akses E-Resources</strong>
+              <span>Database Scopus, IEEE, dan Springer untuk sivitas akademika.</span>
+            </div>
+          </article>
+          <article id="agenda" class="panel">
+            <h3>Agenda Perpustakaan</h3>
+            <div class="announcement">
+              <strong>Pelatihan Penelusuran Jurnal</strong>
+              <span>12 Mei 2026 • Ruang Multimedia</span>
+            </div>
+            <div class="announcement">
+              <strong>Workshop Sitasi Mendeley</strong>
+              <span>18 Mei 2026 • Lab Komputer 2</span>
+            </div>
+            <div class="announcement">
+              <strong>Bedah Buku Dosen Tamu</strong>
+              <span>25 Mei 2026 • Aula Perpustakaan</span>
+            </div>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container footer-grid">
+        <div>
+          <h4>Perpustakaan Universitas</h4>
+          <p>
+            Jl. Pendidikan No. 10, Kota Akademik<br />
+            Email: library@universitas.ac.id
+          </p>
+        </div>
+        <div>
+          <h4>Layanan</h4>
+          <ul>
+            <li><a href="#">Keanggotaan</a></li>
+            <li><a href="#">Peminjaman Buku</a></li>
+            <li><a href="#">E-Library</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Jam Operasional</h4>
+          <ul>
+            <li>Senin - Jumat: 08.00 - 21.00</li>
+            <li>Sabtu: 09.00 - 15.00</li>
+            <li>Minggu: Tutup</li>
+          </ul>
+        </div>
+      </div>
+      <div class="container footer-bottom">
+        <small>&copy; 2026 Perpustakaan Universitas. Semua Hak Dilindungi.</small>
+      </div>
+    </footer>
+  </body>
+</html>

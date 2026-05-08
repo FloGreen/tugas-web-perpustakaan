@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard Perpustakaan - Admin</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header class="navbar">
+      <div class="container navbar-inner">
+        <a href="index.html" class="brand">
+          <span class="brand-logo"></span>
+          <span>Dashboard Perpustakaan</span>
+        </a>
+        <nav class="nav-links">
+          <a href="index.html">Website</a>
+          <a class="active" href="dashboard.html">Dashboard</a>
+          <a href="#statistik">Statistik</a>
+          <a href="#transaksi">Transaksi</a>
+          <a href="#input">Input Data</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="container hero-grid">
+          <div>
+            <span class="badge">Area Internal / Petugas</span>
+            <h1>Monitoring Operasional Perpustakaan Secara Real-Time</h1>
+            <p>
+              Kelola data peminjaman, anggota, serta ketersediaan buku dalam satu
+              dashboard terpadu yang cepat dan mudah digunakan.
+            </p>
+            <div class="hero-cta">
+              <a class="btn btn-primary" href="#transaksi">Lihat Transaksi</a>
+              <a class="btn btn-secondary" href="index.html">Kembali ke Website</a>
+            </div>
+          </div>
+          <div id="statistik" class="hero-card">
+            <h3 class="section-title">Statistik Hari Ini</h3>
+            <p class="section-subtitle">Data operasional perpustakaan, 8 Mei 2026.</p>
+            <div class="stats">
+              <div class="stat-item">
+                <h4>184</h4>
+                <p>Peminjaman</p>
+              </div>
+              <div class="stat-item">
+                <h4>153</h4>
+                <p>Pengembalian</p>
+              </div>
+              <div class="stat-item">
+                <h4>27</h4>
+                <p>Terlambat</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="transaksi" class="section">
+        <div class="container">
+          <h2 class="section-title">Transaksi Peminjaman Terbaru</h2>
+          <p class="section-subtitle">
+            Daftar aktivitas mahasiswa yang tercatat pada sistem sirkulasi.
+          </p>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Nama Mahasiswa</th>
+                  <th>Judul Buku</th>
+                  <th>Tgl Pinjam</th>
+                  <th>Jatuh Tempo</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>TRX-1021</td>
+                  <td>Rina Putri</td>
+                  <td>Algoritma dan Pemrograman</td>
+                  <td>08-05-2026</td>
+                  <td>15-05-2026</td>
+                  <td><span class="availability">Aktif</span></td>
+                </tr>
+                <tr>
+                  <td>TRX-1022</td>
+                  <td>Fikri Maulana</td>
+                  <td>Statistika Terapan</td>
+                  <td>07-05-2026</td>
+                  <td>14-05-2026</td>
+                  <td><span class="availability unavailable">Terlambat</span></td>
+                </tr>
+                <tr>
+                  <td>TRX-1023</td>
+                  <td>Salma Azzahra</td>
+                  <td>Hukum Tata Negara</td>
+                  <td>08-05-2026</td>
+                  <td>15-05-2026</td>
+                  <td><span class="availability">Aktif</span></td>
+                </tr>
+                <tr>
+                  <td>TRX-1024</td>
+                  <td>Dio Prasetyo</td>
+                  <td>Manajemen Proyek TI</td>
+                  <td>06-05-2026</td>
+                  <td>13-05-2026</td>
+                  <td><span class="availability">Dikembalikan</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <section id="input" class="section">
+        <div class="container panel-grid">
+          <article class="form-card">
+            <h3 class="section-title">Input Buku Baru</h3>
+            <p class="section-subtitle">
+              Tambahkan data buku agar tersedia pada katalog perpustakaan.
+            </p>
+            <form class="form-grid">
+              <div class="form-group">
+                <label for="judul">Judul Buku</label>
+                <input id="judul" class="input" type="text" placeholder="Masukkan judul buku" />
+              </div>
+              <div class="form-group">
+                <label for="penulis">Penulis</label>
+                <input id="penulis" class="input" type="text" placeholder="Nama penulis" />
+              </div>
+              <div class="form-group">
+                <label for="kategori">Kategori</label>
+                <select id="kategori" class="select">
+                  <option>Informatika</option>
+                  <option>Ekonomi</option>
+                  <option>Hukum</option>
+                  <option>Umum</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="stok">Stok</label>
+                <input id="stok" class="input" type="number" min="1" value="1" />
+              </div>
+              <div class="form-group full">
+                <label for="deskripsi">Deskripsi Singkat</label>
+                <textarea
+                  id="deskripsi"
+                  class="input"
+                  placeholder="Tulis ringkasan buku..."
+                ></textarea>
+              </div>
+              <div class="full">
+                <button class="btn btn-primary" type="button">Simpan Data Buku</button>
+              </div>
+            </form>
+          </article>
+
+          <article class="panel">
+            <h3>Catatan Admin</h3>
+            <div class="announcement">
+              <strong>Inventaris Semester Genap</strong>
+              <span>Pastikan seluruh buku referensi dicocokkan dengan sistem.</span>
+            </div>
+            <div class="announcement">
+              <strong>Perpanjangan Otomatis</strong>
+              <span>
+                Aktifkan notifikasi pengingat H-2 jatuh tempo ke email mahasiswa.
+              </span>
+            </div>
+            <div class="announcement">
+              <strong>Validasi Anggota Baru</strong>
+              <span>Verifikasi NIM dan program studi sebelum aktivasi akun.</span>
+            </div>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container footer-bottom">
+        <small>
+          &copy; 2026 Dashboard Perpustakaan Universitas - Sistem Internal.
+        </small>
+      </div>
+    </footer>
+  </body>
+</html>
