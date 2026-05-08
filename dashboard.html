@@ -17,6 +17,7 @@
           <a href="index.html">Website</a>
           <a class="active" href="dashboard.html">Dashboard</a>
           <a href="#statistik">Statistik</a>
+          <a href="#menu-modul">Menu</a>
           <a href="#transaksi">Transaksi</a>
           <a href="#input">Input Data</a>
         </nav>
@@ -116,14 +117,72 @@
         </div>
       </section>
 
+      <section id="menu-modul" class="section">
+        <div class="container">
+          <h2 class="section-title">Menu Dashboard</h2>
+          <p class="section-subtitle">
+            Akses cepat ke modul utama pengelolaan perpustakaan.
+          </p>
+          <div class="books-grid">
+            <article class="book-card">
+              <div class="book-body">
+                <h3 class="book-title">Menu Anggota</h3>
+                <p class="book-meta">Kelola data anggota, status aktif, dan validasi akun.</p>
+                <div class="book-footer">
+                  <span class="availability">Aktif</span>
+                  <a href="#form-anggota" class="btn btn-secondary">Buka</a>
+                </div>
+              </div>
+            </article>
+            <article class="book-card">
+              <div class="book-body">
+                <h3 class="book-title">Menu Buku</h3>
+                <p class="book-meta">Tambah buku baru, kategori, dan jumlah stok koleksi.</p>
+                <div class="book-footer">
+                  <span class="availability">Aktif</span>
+                  <a href="#form-buku" class="btn btn-secondary">Buka</a>
+                </div>
+              </div>
+            </article>
+            <article class="book-card">
+              <div class="book-body">
+                <h3 class="book-title">Menu Peminjaman</h3>
+                <p class="book-meta">Input transaksi peminjaman buku oleh anggota.</p>
+                <div class="book-footer">
+                  <span class="availability">Aktif</span>
+                  <a href="#form-peminjaman" class="btn btn-secondary">Buka</a>
+                </div>
+              </div>
+            </article>
+            <article class="book-card">
+              <div class="book-body">
+                <h3 class="book-title">Menu Pengembalian</h3>
+                <p class="book-meta">Input transaksi pengembalian dan status keterlambatan.</p>
+                <div class="book-footer">
+                  <span class="availability">Aktif</span>
+                  <a href="#form-pengembalian" class="btn btn-secondary">Buka</a>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
       <section id="input" class="section">
+        <div class="container">
+          <h2 class="section-title">Input Data Perpustakaan</h2>
+          <p class="section-subtitle">
+            Form untuk transaksi baru dan penambahan data master.
+          </p>
+        </div>
+
         <div class="container panel-grid">
-          <article class="form-card">
+          <article id="form-buku" class="form-card">
             <h3 class="section-title">Input Buku Baru</h3>
             <p class="section-subtitle">
               Tambahkan data buku agar tersedia pada katalog perpustakaan.
             </p>
-            <form class="form-grid">
+            <form id="formBuku" class="form-grid">
               <div class="form-group">
                 <label for="judul">Judul Buku</label>
                 <input id="judul" class="input" type="text" placeholder="Masukkan judul buku" />
@@ -154,26 +213,212 @@
                 ></textarea>
               </div>
               <div class="full">
-                <button class="btn btn-primary" type="button">Simpan Data Buku</button>
+                <button class="btn btn-primary" type="submit">Simpan Data Buku</button>
               </div>
             </form>
           </article>
 
+          <article id="form-peminjaman" class="form-card">
+            <h3 class="section-title">Input Transaksi Peminjaman Baru</h3>
+            <p class="section-subtitle">
+              Catat transaksi peminjaman buku yang dilakukan anggota.
+            </p>
+            <form id="formPeminjaman" class="form-grid">
+              <div class="form-group">
+                <label for="pinjam-id">ID Transaksi</label>
+                <input id="pinjam-id" class="input" type="text" placeholder="Contoh: TRX-PJM-1101" />
+              </div>
+              <div class="form-group">
+                <label for="pinjam-tanggal">Tanggal Peminjaman</label>
+                <input id="pinjam-tanggal" class="input" type="date" />
+              </div>
+              <div class="form-group">
+                <label for="pinjam-anggota">Nama / ID Anggota</label>
+                <input id="pinjam-anggota" class="input" type="text" placeholder="Masukkan nama atau NIM" />
+              </div>
+              <div class="form-group">
+                <label for="pinjam-buku">Judul / Kode Buku</label>
+                <input id="pinjam-buku" class="input" type="text" placeholder="Masukkan judul atau kode buku" />
+              </div>
+              <div class="form-group">
+                <label for="pinjam-jatuh-tempo">Tanggal Jatuh Tempo</label>
+                <input id="pinjam-jatuh-tempo" class="input" type="date" />
+              </div>
+              <div class="form-group">
+                <label for="pinjam-petugas">Petugas</label>
+                <input id="pinjam-petugas" class="input" type="text" placeholder="Nama petugas" />
+              </div>
+              <div class="full">
+                <button class="btn btn-primary" type="submit">Simpan Transaksi Peminjaman</button>
+              </div>
+            </form>
+          </article>
+        </div>
+
+        <div class="container panel-grid">
+          <article id="form-pengembalian" class="form-card">
+            <h3 class="section-title">Input Transaksi Pengembalian Baru</h3>
+            <p class="section-subtitle">
+              Catat pengembalian buku dan hitung status keterlambatan.
+            </p>
+            <form id="formPengembalian" class="form-grid">
+              <div class="form-group">
+                <label for="kembali-id">ID Pengembalian</label>
+                <input id="kembali-id" class="input" type="text" placeholder="Contoh: TRX-KBL-2201" />
+              </div>
+              <div class="form-group">
+                <label for="kembali-tanggal">Tanggal Pengembalian</label>
+                <input id="kembali-tanggal" class="input" type="date" />
+              </div>
+              <div class="form-group">
+                <label for="kembali-transaksi">ID Transaksi Peminjaman</label>
+                <input id="kembali-transaksi" class="input" type="text" placeholder="Masukkan ID peminjaman" />
+              </div>
+              <div class="form-group">
+                <label for="kembali-kondisi">Kondisi Buku</label>
+                <select id="kembali-kondisi" class="select">
+                  <option>Baik</option>
+                  <option>Rusak Ringan</option>
+                  <option>Rusak Berat</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="kembali-denda">Denda (Rp)</label>
+                <input id="kembali-denda" class="input" type="number" min="0" value="0" />
+              </div>
+              <div class="form-group">
+                <label for="kembali-status">Status</label>
+                <select id="kembali-status" class="select">
+                  <option>Tepat Waktu</option>
+                  <option>Terlambat</option>
+                </select>
+              </div>
+              <div class="full">
+                <button class="btn btn-primary" type="submit">Simpan Transaksi Pengembalian</button>
+              </div>
+            </form>
+          </article>
+
+          <article id="form-anggota" class="form-card">
+            <h3 class="section-title">Input Anggota Baru</h3>
+            <p class="section-subtitle">
+              Registrasi data anggota perpustakaan baru.
+            </p>
+            <form id="formAnggota" class="form-grid">
+              <div class="form-group">
+                <label for="anggota-id">ID Anggota</label>
+                <input id="anggota-id" class="input" type="text" placeholder="Contoh: AGT-3051" />
+              </div>
+              <div class="form-group">
+                <label for="anggota-nama">Nama Lengkap</label>
+                <input id="anggota-nama" class="input" type="text" placeholder="Masukkan nama lengkap" />
+              </div>
+              <div class="form-group">
+                <label for="anggota-nim">NIM / NIP</label>
+                <input id="anggota-nim" class="input" type="text" placeholder="Masukkan NIM atau NIP" />
+              </div>
+              <div class="form-group">
+                <label for="anggota-prodi">Program Studi / Unit</label>
+                <input id="anggota-prodi" class="input" type="text" placeholder="Contoh: Teknik Informatika" />
+              </div>
+              <div class="form-group">
+                <label for="anggota-email">Email</label>
+                <input id="anggota-email" class="input" type="email" placeholder="nama@kampus.ac.id" />
+              </div>
+              <div class="form-group">
+                <label for="anggota-telepon">No. Telepon</label>
+                <input id="anggota-telepon" class="input" type="tel" placeholder="08xxxxxxxxxx" />
+              </div>
+              <div class="form-group full">
+                <label for="anggota-alamat">Alamat</label>
+                <textarea id="anggota-alamat" class="input" placeholder="Masukkan alamat lengkap"></textarea>
+              </div>
+              <div class="full">
+                <button class="btn btn-primary" type="submit">Simpan Anggota Baru</button>
+              </div>
+            </form>
+          </article>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container">
+          <h2 class="section-title">Tabel Hasil Input</h2>
+          <p class="section-subtitle">
+            Data yang Anda input dari form akan otomatis tampil pada tabel berikut.
+          </p>
+        </div>
+
+        <div class="container panel-grid">
           <article class="panel">
-            <h3>Catatan Admin</h3>
-            <div class="announcement">
-              <strong>Inventaris Semester Genap</strong>
-              <span>Pastikan seluruh buku referensi dicocokkan dengan sistem.</span>
+            <h3>Data Buku Baru</h3>
+            <div class="table-wrap stack-top">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Judul</th>
+                    <th>Penulis</th>
+                    <th>Kategori</th>
+                    <th>Stok</th>
+                  </tr>
+                </thead>
+                <tbody id="hasilBukuBody"></tbody>
+              </table>
             </div>
-            <div class="announcement">
-              <strong>Perpanjangan Otomatis</strong>
-              <span>
-                Aktifkan notifikasi pengingat H-2 jatuh tempo ke email mahasiswa.
-              </span>
+          </article>
+
+          <article class="panel">
+            <h3>Data Anggota Baru</h3>
+            <div class="table-wrap stack-top">
+              <table>
+                <thead>
+                  <tr>
+                    <th>ID Anggota</th>
+                    <th>Nama</th>
+                    <th>NIM/NIP</th>
+                    <th>Prodi/Unit</th>
+                  </tr>
+                </thead>
+                <tbody id="hasilAnggotaBody"></tbody>
+              </table>
             </div>
-            <div class="announcement">
-              <strong>Validasi Anggota Baru</strong>
-              <span>Verifikasi NIM dan program studi sebelum aktivasi akun.</span>
+          </article>
+        </div>
+
+        <div class="container panel-grid">
+          <article class="panel">
+            <h3>Data Transaksi Peminjaman</h3>
+            <div class="table-wrap stack-top">
+              <table>
+                <thead>
+                  <tr>
+                    <th>ID Transaksi</th>
+                    <th>Anggota</th>
+                    <th>Buku</th>
+                    <th>Tgl Pinjam</th>
+                    <th>Jatuh Tempo</th>
+                  </tr>
+                </thead>
+                <tbody id="hasilPeminjamanBody"></tbody>
+              </table>
+            </div>
+          </article>
+
+          <article class="panel">
+            <h3>Data Transaksi Pengembalian</h3>
+            <div class="table-wrap stack-top">
+              <table>
+                <thead>
+                  <tr>
+                    <th>ID Pengembalian</th>
+                    <th>ID Peminjaman</th>
+                    <th>Tanggal</th>
+                    <th>Status</th>
+                    <th>Denda</th>
+                  </tr>
+                </thead>
+                <tbody id="hasilPengembalianBody"></tbody>
+              </table>
             </div>
           </article>
         </div>
@@ -187,5 +432,77 @@
         </small>
       </div>
     </footer>
+
+    <script>
+      const formBuku = document.getElementById("formBuku");
+      const formPeminjaman = document.getElementById("formPeminjaman");
+      const formPengembalian = document.getElementById("formPengembalian");
+      const formAnggota = document.getElementById("formAnggota");
+
+      const hasilBukuBody = document.getElementById("hasilBukuBody");
+      const hasilPeminjamanBody = document.getElementById("hasilPeminjamanBody");
+      const hasilPengembalianBody = document.getElementById("hasilPengembalianBody");
+      const hasilAnggotaBody = document.getElementById("hasilAnggotaBody");
+
+      function tambahBaris(tbody, values) {
+        const row = document.createElement("tr");
+        values.forEach((value) => {
+          const td = document.createElement("td");
+          td.textContent = value || "-";
+          row.appendChild(td);
+        });
+        tbody.prepend(row);
+      }
+
+      formBuku.addEventListener("submit", (event) => {
+        event.preventDefault();
+        const judul = document.getElementById("judul").value.trim();
+        const penulis = document.getElementById("penulis").value.trim();
+        const kategori = document.getElementById("kategori").value;
+        const stok = document.getElementById("stok").value;
+
+        if (!judul || !penulis) return;
+        tambahBaris(hasilBukuBody, [judul, penulis, kategori, stok]);
+        formBuku.reset();
+      });
+
+      formPeminjaman.addEventListener("submit", (event) => {
+        event.preventDefault();
+        const id = document.getElementById("pinjam-id").value.trim();
+        const tanggal = document.getElementById("pinjam-tanggal").value;
+        const anggota = document.getElementById("pinjam-anggota").value.trim();
+        const buku = document.getElementById("pinjam-buku").value.trim();
+        const jatuhTempo = document.getElementById("pinjam-jatuh-tempo").value;
+
+        if (!id || !anggota || !buku) return;
+        tambahBaris(hasilPeminjamanBody, [id, anggota, buku, tanggal, jatuhTempo]);
+        formPeminjaman.reset();
+      });
+
+      formPengembalian.addEventListener("submit", (event) => {
+        event.preventDefault();
+        const id = document.getElementById("kembali-id").value.trim();
+        const idTransaksi = document.getElementById("kembali-transaksi").value.trim();
+        const tanggal = document.getElementById("kembali-tanggal").value;
+        const status = document.getElementById("kembali-status").value;
+        const denda = document.getElementById("kembali-denda").value || "0";
+
+        if (!id || !idTransaksi) return;
+        tambahBaris(hasilPengembalianBody, [id, idTransaksi, tanggal, status, `Rp ${denda}`]);
+        formPengembalian.reset();
+      });
+
+      formAnggota.addEventListener("submit", (event) => {
+        event.preventDefault();
+        const idAnggota = document.getElementById("anggota-id").value.trim();
+        const nama = document.getElementById("anggota-nama").value.trim();
+        const nim = document.getElementById("anggota-nim").value.trim();
+        const prodi = document.getElementById("anggota-prodi").value.trim();
+
+        if (!idAnggota || !nama) return;
+        tambahBaris(hasilAnggotaBody, [idAnggota, nama, nim, prodi]);
+        formAnggota.reset();
+      });
+    </script>
   </body>
 </html>

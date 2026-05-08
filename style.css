@@ -336,6 +336,12 @@ ul {
   background: linear-gradient(180deg, #dde7f4, #cfdcee);
 }
 
+.book-cover img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
 .book-body {
   padding: 0.95rem;
 }
@@ -482,6 +488,10 @@ textarea.input {
 
 .full {
   grid-column: 1 / -1;
+}
+
+.stack-top {
+  margin-top: 1rem;
 }
 
 /* Footer */
