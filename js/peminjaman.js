@@ -21,6 +21,13 @@ function populateDropdown() {
         selectBuku.innerHTML += opt;
         editSelectBuku.innerHTML += opt;
     });
+
+    //set tanggal hari ini untuk input tanggal pinjam
+    const today = new Date().toISOString().split('T')[0];
+    const tanggalPinjam = document.getElementById("tanggalPinjam");
+    if (inputTanggal) {
+        inputTanggal.value = today;
+    }
 }
 
 function renderTabelPeminjaman() {

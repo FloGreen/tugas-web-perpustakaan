@@ -31,6 +31,12 @@ function tambahAnggota() {
         alert("Semua field wajib diisi!");
         return;
     }
+//validasi format email sederhana
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailPattern.test(email)) {
+        alert("Format email tidak valid!");
+        return;
+    }
 
     const id = dataAnggota.length > 0 ? Math.max(...dataAnggota.map(a => a.id)) + 1 : 1;
     dataAnggota.push({ id, nama, email, noHp, alamat });

@@ -90,8 +90,17 @@ function simpanEditBuku() {
 }
 
 function hapusBuku(id) {
-    if (confirm("Apakah Anda yakin ingin menghapus buku ini?")) {
+    //penambahan konfirmasi mencari judul buku sebelum hapus data buku
+
+    const buku = dataBuku.find(b => b.id === id);
+    const judulBuku = buku ? buku.judul : "buku ini";
+
+    if (confirm(`Apakah Anda yakin ingin menghapus buku: "${judulBuku}"?`)) {
         dataBuku = dataBuku.filter(b => b.id !== id);
         renderTabelBuku();
+    } 
+    
+    else {
+        alert("Penghapusan dibatalkan.");
     }
 }
