@@ -2,7 +2,7 @@ function renderTabelAnggota() {
     const tbody = document.getElementById("tabel-anggota");
     let html = "";
 
-    dataAnggota.forEach((anggota, index) => {
+    anggota.forEach((anggota, index) => {
         html += `
             <tr>
                 <td class="text-center align-middle">${index + 1}</td>
@@ -38,14 +38,14 @@ function tambahAnggota() {
         return;
     }
 
-    const id = dataAnggota.length > 0 ? Math.max(...dataAnggota.map(a => a.id)) + 1 : 1;
-    dataAnggota.push({ id, nama, email, noHp, alamat });
+    const id = anggota.length > 0 ? Math.max(...anggota.map(a => a.id)) + 1 : 1;
+    anggota.push({ id, nama, email, noHp, alamat });
 
     renderTabelAnggota();
 }
 
 function openEditModal(id) {
-    const anggota = dataAnggota.find(a => a.id === id);
+    const anggota = anggota.find(a => a.id === id);
     if (!anggota) return;
 
     document.getElementById("editId").value    = anggota.id;
@@ -65,15 +65,15 @@ function simpanEditAnggota() {
     const noHp   = document.getElementById("editNoHp").value.trim();
     const alamat = document.getElementById("editAlamat").value.trim();
 
-    const idx = dataAnggota.findIndex(a => a.id === id);
+    const idx = anggota.findIndex(a => a.id === id);
     if (idx === -1) return;
 
-    dataAnggota[idx] = { id, nama, email, noHp, alamat };
+    anggota[idx] = { id, nama, email, noHp, alamat };
 
     renderTabelAnggota();
 }
 
 function hapusAnggota(id) {
-    dataAnggota = dataAnggota.filter(a => a.id !== id);
+    anggota = anggota.filter(a => a.id !== id);
     renderTabelAnggota();
 }

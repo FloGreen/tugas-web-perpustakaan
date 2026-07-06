@@ -2,12 +2,12 @@ function renderTabelBuku() {
     const tbody = document.getElementById('tabel-buku');
     let html = "";
 
-    dataBuku.forEach((buku, index) => {
+    buku.forEach((buku, index) => {
         html += `
             <tr>
                 <td class="text-center align-middle">${index + 1}</td>
                 <td class="align-middle">${buku.judul}</td>
-                <td class="text-center align-middle">${buku.pengarang}</td>
+                <td class="text-center align-middle">${buku.penulis}</td>
                 <td class="text-center align-middle">${buku.isbn}</td>
                 <td class="text-center align-middle">${buku.kategori}</td>
                 <td class="text-center align-middle">${buku.tahunTerbit}</td>
@@ -31,8 +31,8 @@ function tambahBuku() {
     const tahunTerbit = document.getElementById("tahunTerbit").value.trim();
     const stok = parseInt(document.getElementById("stok").value);
 
-    dataBuku.push({
-        id: dataBuku.length + 1,
+    buku.push({
+        id: buku.length + 1,
         judul,
         pengarang,
         isbn,
@@ -44,7 +44,7 @@ function tambahBuku() {
 }
 
 function openEditModal(id) {
-    const buku = dataBuku.find(b => b.id === id);
+    const buku = buku.find(b => b.id === id);
     if (!buku) {
         alert("Data buku tidak ditemukan!");
         return;
@@ -76,7 +76,7 @@ function simpanEditBuku() {
         return;
     }
 
-    const buku = dataBuku.find(b => b.id === id);
+    const buku = buku.find(b => b.id === id);
     if (buku) {
         buku.judul = judul;
         buku.pengarang = pengarang;
@@ -92,11 +92,11 @@ function simpanEditBuku() {
 function hapusBuku(id) {
     //penambahan konfirmasi mencari judul buku sebelum hapus data buku
 
-    const buku = dataBuku.find(b => b.id === id);
+    const buku = buku.find(b => b.id === id);
     const judulBuku = buku ? buku.judul : "buku ini";
 
     if (confirm(`Apakah Anda yakin ingin menghapus buku: "${judulBuku}"?`)) {
-        dataBuku = dataBuku.filter(b => b.id !== id);
+        buku = buku.filter(b => b.id !== id);
         renderTabelBuku();
     } 
     

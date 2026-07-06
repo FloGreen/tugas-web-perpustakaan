@@ -10,13 +10,13 @@ function populateDropdown() {
     editSelectAnggota.innerHTML = '<option value="">Pilih anggota...</option>';
     editSelectBuku.innerHTML = '<option value="">Pilih buku...</option>';
 
-    dataAnggota.forEach(a => {
+    anggota.forEach(a => {
         const opt = `<option value="${a.id}">${a.nama}</option>`;
         selectAnggota.innerHTML += opt;
         editSelectAnggota.innerHTML += opt;
     });
 
-    dataBuku.forEach(b => {
+    buku.forEach(b => {
         const opt = `<option value="${b.id}">${b.judul}</option>`;
         selectBuku.innerHTML += opt;
         editSelectBuku.innerHTML += opt;
@@ -34,10 +34,9 @@ function renderTabelPeminjaman() {
     const tbody = document.getElementById("tabel-peminjaman");
     let html = "";
 
-    dataPeminjaman.forEach((p, index) => {
-        const anggota = dataAnggota.find(a => a.id === p.idAnggota);
-        const buku    = dataBuku.find(b => b.id === p.idBuku);
-
+    peminjaman.forEach((p, index) => {
+        const namaAnggota = cariAnggotaBerdasarkanId(p.idAnggota).nama;
+        const judulBuku = detailBuku(p.idBuku).judul;
         const badgeColor = p.status === "Dipinjam" ? "warning"
                          : p.status === "Terlambat" ? "danger"
                          : "success";
@@ -45,10 +44,10 @@ function renderTabelPeminjaman() {
         html += `
             <tr>
                 <td class="text-center align-middle">${index + 1}</td>
-                <td class="align-middle">${anggota ? anggota.nama : "-"}</td>
-                <td class="align-middle">${buku ? buku.judul : "-"}</td>
-                <td class="text-center align-middle">${p.tanggalPinjam}</td>
-                <td class="text-center align-middle">${p.tanggalKembali}</td>
+                <td class="align-middle">${namaAnggota ?? "-"}</td>
+                <td class="align-middle">${judulBuku ?? "-"}</td>
+                <td class="text-center align-middle">${p.tanggalPeminjaman}</td>
+                <td class="text-center align-middle">${p.tanggalKembali ?? ""}</td>
                 <td class="text-center align-middle">
                     <span class="badge bg-${badgeColor}">${p.status}</span>
                 </td>
@@ -74,14 +73,14 @@ function tambahPeminjaman() {
         return;
     }
 
-    const id = dataPeminjaman.length > 0 ? Math.max(...dataPeminjaman.map(p => p.id)) + 1 : 1;
-    dataPeminjaman.push({ id, idAnggota, idBuku, tanggalPinjam, tanggalKembali, status: "Dipinjam" });
+    const id = peminjaman.length > 0 ? Math.max(...peminjaman.map(p => p.id)) + 1 : 1;
+    peminjaman.push({ id, idAnggota, idBuku, tanggalPinjam, tanggalKembali, status: "Dipinjam" });
 
     renderTabelPeminjaman();
 }
 
 function openEditModal(id) {
-    const p = dataPeminjaman.find(p => p.id === id);
+    const p = peminjaman.find(p => p.id === id);
     if (!p) return;
 
     populateDropdown();
@@ -105,15 +104,15 @@ function simpanEditPeminjaman() {
     const tanggalKembali = document.getElementById("editTanggalKembali").value;
     const status = document.getElementById("editStatus").value;
 
-    const index = dataPeminjaman.findIndex(p => p.id === id);
+    const index = peminjaman.findIndex(p => p.id === id);
     if (index === -1) return;
 
-    dataPeminjaman[index] = { id, idAnggota, idBuku, tanggalPinjam, tanggalKembali, status };
+    peminjaman[index] = { id, idAnggota, idBuku, tanggalPinjam, tanggalKembali, status };
 
     renderTabelPeminjaman();
 }
 
 function hapusPeminjaman(id) {
-    dataPeminjaman = dataPeminjaman.filter(p => p.id !== id);
+    peminjaman = peminjaman.filter(p => p.id !== id);
     renderTabelPeminjaman();
 }
