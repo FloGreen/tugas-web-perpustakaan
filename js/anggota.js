@@ -8,7 +8,7 @@ function renderTabelAnggota() {
                 <td class="text-center align-middle">${index + 1}</td>
                 <td class="align-middle">${anggota.nama}</td>
                 <td class="align-middle">${anggota.email}</td>
-                <td class="align-middle">${anggota.noHp}</td>
+                <td class="align-middle">${anggota.nomorTelepon}</td>
                 <td class="align-middle">${anggota.alamat}</td>
                 <td class="text-center align-middle">
                     <button class="btn btn-warning btn-sm btn-edit" data-id="${anggota.id}">Edit</button>

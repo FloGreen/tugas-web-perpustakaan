@@ -1,438 +1,566 @@
 <!DOCTYPE html>
 <html lang="id">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Dashboard Perpustakaan - Admin</title>
-    <link rel="stylesheet" href="style.css" />
-  </head>
-  <body>
-    <header class="navbar">
-      <div class="container navbar-inner">
-        <a href="index.html" class="brand">
-          <span class="brand-logo"></span>
-          <span>Dashboard Perpustakaan</span>
-        </a>
-        <nav class="nav-links">
-          <a href="index.html">Website</a>
-          <a class="active" href="dashboard.html">Dashboard</a>
-          <a href="#statistik">Statistik</a>
-          <a href="#menu-modul">Menu</a>
-          <a href="#transaksi">Transaksi</a>
-          <a href="#input">Input Data</a>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard Perpustakaan - Admin</title>
+  <!-- Bootstrap 5.3.3 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Poppins:wght@600;800&display=swap"
+    rel="stylesheet" />
+  <style>
+    :root {
+      --bs-primary: #1f4b7a;
+      --bs-primary-hover: #16385b;
+      --bs-font-sans-serif: "Inter", sans-serif;
+      --bs-body-font-family: var(--bs-font-sans-serif);
+    }
+
+    body {
+      background: linear-gradient(180deg, #f8fbff 0%, #f3f7fc 55%, #eef3f9 100%);
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    .navbar-brand {
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .brand-logo {
+      width: 40px;
+      aspect-ratio: 1;
+      border-radius: 50%;
+      background: radial-gradient(circle at top, #2f8f9d, #1f4b7a 70%);
+      box-shadow: inset 0 0 0 3px rgba(255, 255, 255, 0.16);
+    }
+
+    .bg-primary-custom {
+      background-color: #1f4b7a !important;
+    }
+
+    .text-primary-custom {
+      color: #16385b !important;
+    }
+
+    .text-muted-custom {
+      color: #5d6b7e !important;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Header / Navbar -->
+  <header class="navbar navbar-expand-md sticky-top bg-white bg-opacity-75 border-bottom navbar-light"
+    style="backdrop-filter: blur(12px);">
+    <div class="container py-2">
+      <a href="index.html" class="navbar-brand d-flex align-items-center gap-2 fw-bold text-primary-custom">
+        <span class="brand-logo d-inline-block"></span>
+        <span>Dashboard Perpustakaan</span>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+        <nav class="navbar-nav gap-2 fw-semibold text-end">
+          <a class="nav-link text-muted-custom" href="index.html">Website</a>
+          <a class="nav-link active text-primary" href="dashboard.html">Dashboard</a>
+          <a class="nav-link text-muted-custom" href="#statistik">Statistik</a>
+          <a class="nav-link text-muted-custom" href="#menu-modul">Menu</a>
+          <a class="nav-link text-muted-custom" href="#transaksi">Transaksi</a>
+          <a class="nav-link text-muted-custom" href="#input">Input Data</a>
         </nav>
       </div>
-    </header>
+    </div>
+  </header>
 
-    <main>
-      <section class="hero">
-        <div class="container hero-grid">
-          <div>
-            <span class="badge">Area Internal / Petugas</span>
-            <h1>Monitoring Operasional Perpustakaan Secara Real-Time</h1>
-            <p>
-              Kelola data peminjaman, anggota, serta ketersediaan buku dalam satu
-              dashboard terpadu yang cepat dan mudah digunakan.
+  <main>
+    <section class="hero py-5">
+      <div class="container">
+        <div class="row align-items-center g-4">
+          <div class="col-lg-7">
+            <span class="badge rounded-pill text-uppercase text-primary px-3 py-2 border mb-3"
+              style="background: rgba(31, 75, 122, 0.1); border-color: rgba(31, 75, 122, 0.2) !important;">
+              Area Internal / Petugas
+            </span>
+            <h1 class="display-5 fw-bold text-primary-custom mb-3">Monitoring Operasional Perpustakaan Secara Real-Time
+            </h1>
+            <p class="text-muted-custom mb-4" style="max-width: 56ch;">
+              Kelola data peminjaman, anggota, serta ketersediaan buku dalam satu dashboard terpadu yang cepat dan mudah
+              digunakan.
             </p>
-            <div class="hero-cta">
-              <a class="btn btn-primary" href="#transaksi">Lihat Transaksi</a>
-              <a class="btn btn-secondary" href="index.html">Kembali ke Website</a>
+            <div class="d-flex flex-wrap gap-2">
+              <a class="btn btn-primary bg-primary-custom border-0 rounded-pill px-4 py-2 shadow-sm"
+                href="#transaksi">Lihat Transaksi</a>
+              <a class="btn btn-outline-secondary rounded-pill px-4 py-2 bg-white text-primary-custom"
+                href="index.html">Kembali ke Website</a>
             </div>
           </div>
-          <div id="statistik" class="hero-card">
-            <h3 class="section-title">Statistik Hari Ini</h3>
-            <p class="section-subtitle">Data Operasional Perpustakaan, 8 Mei 2026.</p>
-            <div class="stats">
-              <div class="stat-item">
-                <h4>184</h4>
-                <p>Peminjaman</p>
-              </div>
-              <div class="stat-item">
-                <h4>153</h4>
-                <p>Pengembalian</p>
-              </div>
-              <div class="stat-item">
-                <h4>27</h4>
-                <p>Terlambat</p>
+
+          <div class="col-lg-5" id="statistik">
+            <div class="card p-4 rounded-4 shadow-sm border">
+              <h3 class="h4 text-primary-custom fw-bold mb-1">Statistik Hari Ini</h3>
+              <p class="small text-muted-custom mb-4">Data Operasional Perpustakaan, <span id="tanggal"></span>.</p>
+              <div class="row g-2 text-center">
+                <div class="col-4">
+                  <div class="p-2 border rounded-3 text-start"
+                    style="background: #f7fbff; border-color: #d8e8fa !important;">
+                    <h4 class="h5 fw-bold mb-1 text-primary" id="total-peminjaman">
+                    </h4>
+                    <p class="small text-muted mb-0">Peminjaman</p>
+                  </div>
+                </div>
+                <div class="col-4">
+                  <div class="p-2 border rounded-3 text-start"
+                    style="background: #f7fbff; border-color: #d8e8fa !important;">
+                    <h4 class="h5 fw-bold mb-1 text-success" id="total-pengembalian"></h4>
+                    <p class="small text-muted mb-0">Pengembalian</p>
+                  </div>
+                </div>
+                <div class="col-4">
+                  <div class="p-2 border rounded-3 text-start"
+                    style="background: #fff5f5; border-color: #fecaca !important;">
+                    <h4 class="h5 fw-bold mb-1 text-danger" id="total-terlambat"></h4>
+                    <p class="small text-muted mb-0">Terlambat</p>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </section>
-
-      <section id="transaksi" class="section">
-        <div class="container">
-          <h2 class="section-title">Transaksi Peminjaman Terbaru</h2>
-          <p class="section-subtitle">
-            Daftar Aktivitas Mahasiswa Yang Tercatat Pada Sistem Sirkulasi.
-          </p>
-          <div class="table-wrap">
-            <table>
-              <thead>
-                <tr>
-                  <th>ID</th>
-                  <th>Nama Mahasiswa</th>
-                  <th>Judul Buku</th>
-                  <th>Tgl Pinjam</th>
-                  <th>Jatuh Tempo</th>
-                  <th>Status</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>TRX-1021</td>
-                  <td>Jessica Putri</td>
-                  <td>Algoritma dan Pemrograman</td>
-                  <td>08-05-2026</td>
-                  <td>15-05-2026</td>
-                  <td><span class="availability">Aktif</span></td>
-                </tr>
-                <tr>
-                  <td>TRX-1022</td>
-                  <td>Fikri Maulana</td>
-                  <td>Statistika Terapan</td>
-                  <td>07-05-2026</td>
-                  <td>14-05-2026</td>
-                  <td><span class="availability unavailable">Terlambat</span></td>
-                </tr>
-                <tr>
-                  <td>TRX-1023</td>
-                  <td>Salma Azzahra</td>
-                  <td>Hukum Tata Negara</td>
-                  <td>08-05-2026</td>
-                  <td>15-05-2026</td>
-                  <td><span class="availability">Aktif</span></td>
-                </tr>
-                <tr>
-                  <td>TRX-1024</td>
-                  <td>Dio Prasetyo</td>
-                  <td>Manajemen Proyek TI</td>
-                  <td>06-05-2026</td>
-                  <td>13-05-2026</td>
-                  <td><span class="availability">Dikembalikan</span></td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </section>
-
-      <section id="menu-modul" class="section">
-        <div class="container">
-          <h2 class="section-title">Menu Dashboard</h2>
-          <p class="section-subtitle">
-            Akses Cepat Ke Modul Utama Pengelolaan Perpustakaan.
-          </p>
-          <div class="books-grid">
-            <article class="book-card">
-              <div class="book-body">
-                <h3 class="book-title">Menu Anggota</h3>
-                <p class="book-meta">Kelola data anggota, status aktif, dan validasi akun.</p>
-                <div class="book-footer">
-                  <span class="availability">Aktif</span>
-                  <a href="#form-anggota" class="btn btn-secondary">Buka</a>
-                </div>
-              </div>
-            </article>
-            <article class="book-card">
-              <div class="book-body">
-                <h3 class="book-title">Menu Buku</h3>
-                <p class="book-meta">Tambah buku baru, kategori, dan jumlah stok koleksi.</p>
-                <div class="book-footer">
-                  <span class="availability">Aktif</span>
-                  <a href="#form-buku" class="btn btn-secondary">Buka</a>
-                </div>
-              </div>
-            </article>
-            <article class="book-card">
-              <div class="book-body">
-                <h3 class="book-title">Menu Peminjaman</h3>
-                <p class="book-meta">Input transaksi peminjaman buku oleh anggota.</p>
-                <div class="book-footer">
-                  <span class="availability">Aktif</span>
-                  <a href="#form-peminjaman" class="btn btn-secondary">Buka</a>
-                </div>
-              </div>
-            </article>
-            <article class="book-card">
-              <div class="book-body">
-                <h3 class="book-title">Menu Pengembalian</h3>
-                <p class="book-meta">Input transaksi pengembalian dan status keterlambatan.</p>
-                <div class="book-footer">
-                  <span class="availability">Aktif</span>
-                  <a href="#form-pengembalian" class="btn btn-secondary">Buka</a>
-                </div>
-              </div>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <section id="input" class="section">
-        <div class="container">
-          <h2 class="section-title">Input Data Perpustakaan</h2>
-          <p class="section-subtitle">
-            Form untuk transaksi baru dan penambahan data master.
-          </p>
-        </div>
-
-        <div class="container panel-grid">
-          <article id="form-buku" class="form-card">
-            <h3 class="section-title">Input Buku Baru</h3>
-            <p class="section-subtitle">
-              Tambahkan data buku agar tersedia pada katalog perpustakaan.
-            </p>
-            <form id="formBuku" class="form-grid">
-              <div class="form-group">
-                <label for="judul">Judul Buku</label>
-                <input id="judul" class="input" type="text" placeholder="Masukkan judul buku" />
-              </div>
-              <div class="form-group">
-                <label for="penulis">Penulis</label>
-                <input id="penulis" class="input" type="text" placeholder="Nama penulis" />
-              </div>
-              <div class="form-group">
-                <label for="kategori">Kategori</label>
-                <select id="kategori" class="select">
-                  <option>Informatika</option>
-                  <option>Ekonomi</option>
-                  <option>Hukum</option>
-                  <option>Umum</option>
-                </select>
-              </div>
-              <div class="form-group">
-                <label for="stok">Stok</label>
-                <input id="stok" class="input" type="number" min="1" value="1" />
-              </div>
-              <div class="form-group full">
-                <label for="deskripsi">Deskripsi Singkat</label>
-                <textarea
-                  id="deskripsi"
-                  class="input"
-                  placeholder="Tulis ringkasan buku..."
-                ></textarea>
-              </div>
-              <div class="full">
-                <button class="btn btn-primary" type="submit">Simpan Data Buku</button>
-              </div>
-            </form>
-          </article>
-
-          <article id="form-peminjaman" class="form-card">
-            <h3 class="section-title">Input Transaksi Peminjaman Baru</h3>
-            <p class="section-subtitle">
-              Catat transaksi peminjaman buku yang dilakukan anggota.
-            </p>
-            <form id="formPeminjaman" class="form-grid">
-              <div class="form-group">
-                <label for="pinjam-id">ID Transaksi</label>
-                <input id="pinjam-id" class="input" type="text" placeholder="Contoh: TRX-PJM-1101" />
-              </div>
-              <div class="form-group">
-                <label for="pinjam-tanggal">Tanggal Peminjaman</label>
-                <input id="pinjam-tanggal" class="input" type="date" />
-              </div>
-              <div class="form-group">
-                <label for="pinjam-anggota">Nama / ID Anggota</label>
-                <input id="pinjam-anggota" class="input" type="text" placeholder="Masukkan nama atau NIM" />
-              </div>
-              <div class="form-group">
-                <label for="pinjam-buku">Judul / Kode Buku</label>
-                <input id="pinjam-buku" class="input" type="text" placeholder="Masukkan judul atau kode buku" />
-              </div>
-              <div class="form-group">
-                <label for="pinjam-jatuh-tempo">Tanggal Jatuh Tempo</label>
-                <input id="pinjam-jatuh-tempo" class="input" type="date" />
-              </div>
-              <div class="form-group">
-                <label for="pinjam-petugas">Petugas</label>
-                <input id="pinjam-petugas" class="input" type="text" placeholder="Nama petugas" />
-              </div>
-              <div class="full">
-                <button class="btn btn-primary" type="submit">Simpan Transaksi Peminjaman</button>
-              </div>
-            </form>
-          </article>
-        </div>
-
-        <div class="container panel-grid">
-          <article id="form-pengembalian" class="form-card">
-            <h3 class="section-title">Input Transaksi Pengembalian Baru</h3>
-            <p class="section-subtitle">
-              Catat pengembalian buku dan hitung status keterlambatan.
-            </p>
-            <form id="formPengembalian" class="form-grid">
-              <div class="form-group">
-                <label for="kembali-id">ID Pengembalian</label>
-                <input id="kembali-id" class="input" type="text" placeholder="Contoh: TRX-KBL-2201" />
-              </div>
-              <div class="form-group">
-                <label for="kembali-tanggal">Tanggal Pengembalian</label>
-                <input id="kembali-tanggal" class="input" type="date" />
-              </div>
-              <div class="form-group">
-                <label for="kembali-transaksi">ID Transaksi Peminjaman</label>
-                <input id="kembali-transaksi" class="input" type="text" placeholder="Masukkan ID peminjaman" />
-              </div>
-              <div class="form-group">
-                <label for="kembali-kondisi">Kondisi Buku</label>
-                <select id="kembali-kondisi" class="select">
-                  <option>Baik</option>
-                  <option>Rusak Ringan</option>
-                  <option>Rusak Berat</option>
-                </select>
-              </div>
-              <div class="form-group">
-                <label for="kembali-denda">Denda (Rp)</label>
-                <input id="kembali-denda" class="input" type="number" min="0" value="0" />
-              </div>
-              <div class="form-group">
-                <label for="kembali-status">Status</label>
-                <select id="kembali-status" class="select">
-                  <option>Tepat Waktu</option>
-                  <option>Terlambat</option>
-                </select>
-              </div>
-              <div class="full">
-                <button class="btn btn-primary" type="submit">Simpan Transaksi Pengembalian</button>
-              </div>
-            </form>
-          </article>
-
-          <article id="form-anggota" class="form-card">
-            <h3 class="section-title">Input Anggota Baru</h3>
-            <p class="section-subtitle">
-              Registrasi data anggota perpustakaan baru.
-            </p>
-            <form id="formAnggota" class="form-grid">
-              <div class="form-group">
-                <label for="anggota-id">ID Anggota</label>
-                <input id="anggota-id" class="input" type="text" placeholder="Contoh: AGT-3051" />
-              </div>
-              <div class="form-group">
-                <label for="anggota-nama">Nama Lengkap</label>
-                <input id="anggota-nama" class="input" type="text" placeholder="Masukkan nama lengkap" />
-              </div>
-              <div class="form-group">
-                <label for="anggota-nim">NIM / NIP</label>
-                <input id="anggota-nim" class="input" type="text" placeholder="Masukkan NIM atau NIP" />
-              </div>
-              <div class="form-group">
-                <label for="anggota-prodi">Program Studi / Unit</label>
-                <input id="anggota-prodi" class="input" type="text" placeholder="Contoh: Teknik Informatika" />
-              </div>
-              <div class="form-group">
-                <label for="anggota-email">Email</label>
-                <input id="anggota-email" class="input" type="email" placeholder="nama@kampus.ac.id" />
-              </div>
-              <div class="form-group">
-                <label for="anggota-telepon">No. Telepon</label>
-                <input id="anggota-telepon" class="input" type="tel" placeholder="08xxxxxxxxxx" />
-              </div>
-              <div class="form-group full">
-                <label for="anggota-alamat">Alamat</label>
-                <textarea id="anggota-alamat" class="input" placeholder="Masukkan alamat lengkap"></textarea>
-              </div>
-              <div class="full">
-                <button class="btn btn-primary" type="submit">Simpan Anggota Baru</button>
-              </div>
-            </form>
-          </article>
-        </div>
-      </section>
-
-      <section class="section">
-        <div class="container">
-          <h2 class="section-title">Tabel Hasil Input</h2>
-          <p class="section-subtitle">
-            Data yang Anda input dari form akan otomatis tampil pada tabel berikut.
-          </p>
-        </div>
-
-        <div class="container panel-grid">
-          <article class="panel">
-            <h3>Data Buku Baru</h3>
-            <div class="table-wrap stack-top">
-              <table>
-                <thead>
-                  <tr>
-                    <th>Judul</th>
-                    <th>Penulis</th>
-                    <th>Kategori</th>
-                    <th>Stok</th>
-                  </tr>
-                </thead>
-                <tbody id="hasilBukuBody"></tbody>
-              </table>
-            </div>
-          </article>
-
-          <article class="panel">
-            <h3>Data Anggota Baru</h3>
-            <div class="table-wrap stack-top">
-              <table>
-                <thead>
-                  <tr>
-                    <th>ID Anggota</th>
-                    <th>Nama</th>
-                    <th>NIM/NIP</th>
-                    <th>Prodi/Unit</th>
-                  </tr>
-                </thead>
-                <tbody id="hasilAnggotaBody"></tbody>
-              </table>
-            </div>
-          </article>
-        </div>
-
-        <div class="container panel-grid">
-          <article class="panel">
-            <h3>Data Transaksi Peminjaman</h3>
-            <div class="table-wrap stack-top">
-              <table>
-                <thead>
-                  <tr>
-                    <th>ID Transaksi</th>
-                    <th>Anggota</th>
-                    <th>Buku</th>
-                    <th>Tgl Pinjam</th>
-                    <th>Jatuh Tempo</th>
-                  </tr>
-                </thead>
-                <tbody id="hasilPeminjamanBody"></tbody>
-              </table>
-            </div>
-          </article>
-
-          <article class="panel">
-            <h3>Data Transaksi Pengembalian</h3>
-            <div class="table-wrap stack-top">
-              <table>
-                <thead>
-                  <tr>
-                    <th>ID Pengembalian</th>
-                    <th>ID Peminjaman</th>
-                    <th>Tanggal</th>
-                    <th>Status</th>
-                    <th>Denda</th>
-                  </tr>
-                </thead>
-                <tbody id="hasilPengembalianBody"></tbody>
-              </table>
-            </div>
-          </article>
-        </div>
-      </section>
-    </main>
-
-    <footer class="footer">
-      <div class="container footer-bottom">
-        <small>
-          &copy; 2026 Dashboard Perpustakaan Universitas - Sistem Internal.
-        </small>
       </div>
-    </footer>
+    </section>
 
-    <script src="script.js"></script>
-  </body>
+    <section id="transaksi" class="py-5 bg-white border-top border-bottom">
+      <div class="container">
+        <h2 class="h3 fw-bold text-primary-custom mb-1">Transaksi Peminjaman Terbaru</h2>
+        <p class="text-muted-custom mb-4">Daftar Aktivitas Mahasiswa Yang Tercatat Pada Sistem Sirkulasi.</p>
+        <div class="table-responsive shadow-sm rounded-3 border">
+          <table class="table table-hover align-middle mb-0 text-nowrap">
+            <thead class="table-light">
+              <tr>
+                <th class="py-3">ID</th>
+                <th class="py-3">Nama Mahasiswa</th>
+                <th class="py-3">Judul Buku</th>
+                <th class="py-3">Tgl Pinjam</th>
+                <th class="py-3">Jatuh Tempo</th>
+                <th class="py-3">Status</th>
+              </tr>
+            </thead>
+            <tbody id="tabel-peminjaman">
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section id="menu-modul" class="py-5">
+      <div class="container">
+        <h2 class="h3 fw-bold text-primary-custom mb-1">Menu Dashboard</h2>
+        <p class="text-muted-custom mb-4">Akses Cepat Ke Modul Utama Pengelolaan Perpustakaan.</p>
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-4 g-3">
+          <div class="col">
+            <article class="card h-100 shadow-sm border rounded-3">
+              <div class="card-body p-3 d-flex flex-column justify-content-between">
+                <div>
+                  <h3 class="h6 fw-bold text-primary-custom mb-1">Menu Anggota</h3>
+                  <p class="small text-muted-custom mb-3">Kelola data anggota, status aktif, dan validasi akun.</p>
+                </div>
+                <div class="d-flex align-items-center justify-content-between">
+                  <span class="badge bg-success-subtle text-success rounded-pill px-2 py-1 small">Aktif</span>
+                  <a href="#form-anggota" class="btn btn-sm btn-outline-secondary rounded-pill bg-white px-3">Buka</a>
+                </div>
+              </div>
+            </article>
+          </div>
+          <div class="col">
+            <article class="card h-100 shadow-sm border rounded-3">
+              <div class="card-body p-3 d-flex flex-column justify-content-between">
+                <div>
+                  <h3 class="h6 fw-bold text-primary-custom mb-1">Menu Buku</h3>
+                  <p class="small text-muted-custom mb-3">Tambah buku baru, kategori, dan jumlah stok koleksi.</p>
+                </div>
+                <div class="d-flex align-items-center justify-content-between">
+                  <span class="badge bg-success-subtle text-success rounded-pill px-2 py-1 small">Aktif</span>
+                  <a href="#form-buku" class="btn btn-sm btn-outline-secondary rounded-pill bg-white px-3">Buka</a>
+                </div>
+              </div>
+            </article>
+          </div>
+          <div class="col">
+            <article class="card h-100 shadow-sm border rounded-3">
+              <div class="card-body p-3 d-flex flex-column justify-content-between">
+                <div>
+                  <h3 class="h6 fw-bold text-primary-custom mb-1">Menu Peminjaman</h3>
+                  <p class="small text-muted-custom mb-3">Input transaksi peminjaman buku oleh anggota.</p>
+                </div>
+                <div class="d-flex align-items-center justify-content-between">
+                  <span class="badge bg-success-subtle text-success rounded-pill px-2 py-1 small">Aktif</span>
+                  <a href="#form-peminjaman"
+                    class="btn btn-sm btn-outline-secondary rounded-pill bg-white px-3">Buka</a>
+                </div>
+              </div>
+            </article>
+          </div>
+          <div class="col">
+            <article class="card h-100 shadow-sm border rounded-3">
+              <div class="card-body p-3 d-flex flex-column justify-content-between">
+                <div>
+                  <h3 class="h6 fw-bold text-primary-custom mb-1">Menu Pengembalian</h3>
+                  <p class="small text-muted-custom mb-3">Input transaksi pengembalian dan status keterlambatan.</p>
+                </div>
+                <div class="d-flex align-items-center justify-content-between">
+                  <span class="badge bg-success-subtle text-success rounded-pill px-2 py-1 small">Aktif</span>
+                  <a href="#form-pengembalian"
+                    class="btn btn-sm btn-outline-secondary rounded-pill bg-white px-3">Buka</a>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="input" class="py-5 bg-white border-top border-bottom">
+      <div class="container mb-4">
+        <h2 class="h3 fw-bold text-primary-custom mb-1">Input Data Perpustakaan</h2>
+        <p class="text-muted-custom mb-0">Form untuk transaksi baru dan penambahan data master.</p>
+      </div>
+
+      <div class="container mb-4">
+        <div class="row g-4">
+          <div class="col-md-6" id="form-buku">
+            <article class="card p-4 rounded-3 shadow-sm border h-100">
+              <h3 class="h5 text-primary-custom fw-bold mb-1">Input Buku Baru</h3>
+              <p class="small text-muted-custom mb-4">Tambahkan data buku agar tersedia pada katalog perpustakaan.</p>
+              <form id="formBuku" class="row g-3">
+                <div class="col-md-6">
+                  <label for="judul" class="form-label small fw-semibold">Judul Buku</label>
+                  <input id="judul" class="form-control" type="text" placeholder="Masukkan judul buku" required />
+                </div>
+                <div class="col-md-6">
+                  <label for="penulis" class="form-label small fw-semibold">Penulis</label>
+                  <input id="penulis" class="form-control" type="text" placeholder="Nama penulis" required />
+                </div>
+                <div class="col-md-6">
+                  <label for="kategori" class="form-label small fw-semibold">Kategori</label>
+                  <select id="kategori" class="form-select">
+                    <option>Informatika</option>
+                    <option>Ekonomi</option>
+                    <option>Hukum</option>
+                    <option>Umum</option>
+                  </select>
+                </div>
+                <div class="col-md-6">
+                  <label for="stok" class="form-label small fw-semibold">Stok</label>
+                  <input id="stok" class="form-control" type="number" min="1" value="1" required />
+                </div>
+                <div class="col-12">
+                  <label for="deskripsi" class="form-label small fw-semibold">Deskripsi Singkat</label>
+                  <textarea id="deskripsi" class="form-control" rows="3"
+                    placeholder="Tulis ringkasan buku..."></textarea>
+                </div>
+                <div class="col-12 mt-4">
+                  <button class="btn btn-primary bg-primary-custom border-0 w-100 rounded-2" type="submit">Simpan Data
+                    Buku</button>
+                </div>
+              </form>
+            </article>
+          </div>
+
+          <div class="col-md-6" id="form-peminjaman">
+            <article class="card p-4 rounded-3 shadow-sm border h-100">
+              <h3 class="h5 text-primary-custom fw-bold mb-1">Input Transaksi Peminjaman Baru</h3>
+              <p class="small text-muted-custom mb-4">Catat transaksi peminjaman buku yang dilakukan anggota.</p>
+              <form id="formPeminjaman" class="row g-3">
+                <div class="col-md-6">
+                  <label for="pinjam-id" class="form-label small fw-semibold">ID Transaksi</label>
+                  <input id="pinjam-id" class="form-control" type="text" placeholder="Contoh: TRX-PJM-1101" required />
+                </div>
+                <div class="col-md-6">
+                  <label for="pinjam-tanggal" class="form-label small fw-semibold">Tanggal Peminjaman</label>
+                  <input id="pinjam-tanggal" class="form-control" type="date" required />
+                </div>
+                <div class="col-md-6">
+                  <label for="pinjam-anggota" class="form-label small fw-semibold">Nama / ID Anggota</label>
+                  <input id="pinjam-anggota" class="form-control" type="text" placeholder="Masukkan nama atau NIM"
+                    required />
+                </div>
+                <div class="col-md-6">
+                  <label for="pinjam-buku" class="form-label small fw-semibold">Judul / Kode Buku</label>
+                  <input id="pinjam-buku" class="form-control" type="text" placeholder="Masukkan judul atau kode buku"
+                    required />
+                </div>
+                <div class="col-md-6">
+                  <label for="pinjam-jatuh-tempo" class="form-label small fw-semibold">Tanggal Jatuh Tempo</label>
+                  <input id="pinjam-jatuh-tempo" class="form-control" type="date" required />
+                </div>
+                <div class="col-md-6">
+                  <label for="pinjam-petugas" class="form-label small fw-semibold">Petugas</label>
+                  <input id="pinjam-petugas" class="form-control" type="text" placeholder="Nama petugas" required />
+                </div>
+                <div class="col-12 mt-4">
+                  <button class="btn btn-primary bg-primary-custom border-0 w-100 rounded-2" type="submit">Simpan
+                    Transaksi Peminjaman</button>
+                </div>
+              </form>
+            </article>
+          </div>
+        </div>
+      </div>
+
+      <div class="container">
+        <div class="row g-4">
+          <div class="col-md-6" id="form-pengembalian">
+            <article class="card p-4 rounded-3 shadow-sm border h-100">
+              <h3 class="h5 text-primary-custom fw-bold mb-1">Input Transaksi Pengembalian Baru</h3>
+              <p class="small text-muted-custom mb-4">Catat pengembalian buku dan hitung status keterlambatan.</p>
+              <form id="formPengembalian" class="row g-3">
+                <div class="col-md-6">
+                  <label for="kembali-id" class="form-label small fw-semibold">ID Pengembalian</label>
+                  <input id="kembali-id" class="form-control" type="text" placeholder="Contoh: TRX-KBL-2201" required />
+                </div>
+                <div class="col-md-6">
+                  <label for="kembali-tanggal" class="form-label small fw-semibold">Tanggal Pengembalian</label>
+                  <input id="kembali-tanggal" class="form-control" type="date" required />
+                </div>
+                <div class="col-md-6">
+                  <label for="kembali-transaksi" class="form-label small fw-semibold">ID Transaksi Peminjaman</label>
+                  <input id="kembali-transaksi" class="form-control" type="text" placeholder="Masukkan ID peminjaman"
+                    required />
+                </div>
+                <div class="col-md-6">
+                  <label for="kembali-kondisi" class="form-label small fw-semibold">Kondisi Buku</label>
+                  <select id="kembali-kondisi" class="form-select">
+                    <option>Baik</option>
+                    <option>Rusak Ringan</option>
+                    <option>Rusak Berat</option>
+                  </select>
+                </div>
+                <div class="col-md-6">
+                  <label for="kembali-denda" class="form-label small fw-semibold">Denda (Rp)</label>
+                  <input id="kembali-denda" class="form-control" type="number" min="0" value="0" required />
+                </div>
+                <div class="col-md-6">
+                  <label for="kembali-status" class="form-label small fw-semibold">Status</label>
+                  <select id="kembali-status" class="form-select">
+                    <option>Tepat Waktu</option>
+                    <option>Terlambat</option>
+                  </select>
+                </div>
+                <div class="col-12 mt-4">
+                  <button class="btn btn-primary bg-primary-custom border-0 w-100 rounded-2" type="submit">Simpan
+                    Transaksi Pengembalian</button>
+                </div>
+              </form>
+            </article>
+          </div>
+
+          <div class="col-md-6" id="form-anggota">
+            <article class="card p-4 rounded-3 shadow-sm border h-100">
+              <h3 class="h5 text-primary-custom fw-bold mb-1">Input Anggota Baru</h3>
+              <p class="small text-muted-custom mb-4">Registrasi data anggota perpustakaan baru.</p>
+              <form id="formAnggota" class="row g-3">
+                <div class="col-md-6">
+                  <label for="anggota-id" class="form-label small fw-semibold">ID Anggota</label>
+                  <input id="anggota-id" class="form-control" type="text" placeholder="Contoh: AGT-3051" required />
+                </div>
+                <div class="col-md-6">
+                  <label for="anggota-nama" class="form-label small fw-semibold">Nama Lengkap</label>
+                  <input id="anggota-nama" class="form-control" type="text" placeholder="Masukkan nama lengkap"
+                    required />
+                </div>
+                <div class="col-md-6">
+                  <label for="anggota-nim" class="form-label small fw-semibold">NIM / NIP</label>
+                  <input id="anggota-nim" class="form-control" type="text" placeholder="Masukkan NIM atau NIP"
+                    required />
+                </div>
+                <div class="col-md-6">
+                  <label for="anggota-prodi" class="form-label small fw-semibold">Program Studi / Unit</label>
+                  <input id="anggota-prodi" class="form-control" type="text" placeholder="Contoh: Teknik Informatika"
+                    required />
+                </div>
+                <div class="col-md-6">
+                  <label for="anggota-email" class="form-label small fw-semibold">Email</label>
+                  <input id="anggota-email" class="form-control" type="email" placeholder="nama@kampus.ac.id"
+                    required />
+                </div>
+                <div class="col-md-6">
+                  <label for="anggota-telepon" class="form-label small fw-semibold">No. Telepon</label>
+                  <input id="anggota-telepon" class="form-control" type="tel" placeholder="08xxxxxxxxxx" required />
+                </div>
+                <div class="col-12">
+                  <label for="anggota-alamat" class="form-label small fw-semibold">Alamat</label>
+                  <textarea id="anggota-alamat" class="form-control" rows="2"
+                    placeholder="Masukkan alamat lengkap"></textarea>
+                </div>
+                <div class="col-12 mt-4">
+                  <button class="btn btn-primary bg-primary-custom border-0 w-100 rounded-2" type="submit">Simpan
+                    Anggota Baru</button>
+                </div>
+              </form>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="py-5">
+      <div class="container mb-4">
+        <h2 class="h3 fw-bold text-primary-custom mb-1">Tabel Hasil Input</h2>
+        <p class="text-muted-custom mb-0">Data yang Anda input dari form akan otomatis tampil pada tabel berikut.</p>
+      </div>
+
+      <div class="container mb-4">
+        <div class="row g-4">
+          <div class="col-lg-6">
+            <article class="card p-3 shadow-sm border rounded-3 h-100">
+              <h3 class="h5 fw-bold text-primary-custom mb-3">Data Buku Baru</h3>
+              <div class="table-responsive">
+                <table class="table table-bordered align-middle mb-0 text-nowrap small">
+                  <thead class="table-light">
+                    <tr>
+                      <th>Judul</th>
+                      <th>Penulis</th>
+                      <th>Kategori</th>
+                      <th>Stok</th>
+                    </tr>
+                  </thead>
+                  <tbody id="hasilBukuBody"></tbody>
+                </table>
+              </div>
+            </article>
+          </div>
+
+          <div class="col-lg-6">
+            <article class="card p-3 shadow-sm border rounded-3 h-100">
+              <h3 class="h5 fw-bold text-primary-custom mb-3">Data Anggota Baru</h3>
+              <div class="table-responsive">
+                <table class="table table-bordered align-middle mb-0 text-nowrap small">
+                  <thead class="table-light">
+                    <tr>
+                      <th>ID Anggota</th>
+                      <th>Nama</th>
+                      <th>NIM/NIP</th>
+                      <th>Prodi/Unit</th>
+                    </tr>
+                  </thead>
+                  <tbody id="hasilAnggotaBody"></tbody>
+                </table>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+
+      <div class="container">
+        <div class="row g-4">
+          <div class="col-lg-6">
+            <article class="card p-3 shadow-sm border rounded-3 h-100">
+              <h3 class="h5 fw-bold text-primary-custom mb-3">Data Transaksi Peminjaman</h3>
+              <div class="table-responsive">
+                <table class="table table-bordered align-middle mb-0 text-nowrap small">
+                  <thead class="table-light">
+                    <tr>
+                      <th>ID Transaksi</th>
+                      <th>Anggota</th>
+                      <th>Buku</th>
+                      <th>Tgl Pinjam</th>
+                      <th>Jatuh Tempo</th>
+                    </tr>
+                  </thead>
+                  <tbody id="hasilPeminjamanBody"></tbody>
+                </table>
+              </div>
+            </article>
+          </div>
+
+          <div class="col-lg-6">
+            <article class="card p-3 shadow-sm border rounded-3 h-100">
+              <h3 class="h5 fw-bold text-primary-custom mb-3">Data Transaksi Pengembalian</h3>
+              <div class="table-responsive">
+                <table class="table table-bordered align-middle mb-0 text-nowrap small">
+                  <thead class="table-light">
+                    <tr>
+                      <th>ID Pengembalian</th>
+                      <th>ID Peminjaman</th>
+                      <th>Tanggal</th>
+                      <th>Status</th>
+                      <th>Denda</th>
+                    </tr>
+                  </thead>
+                  <tbody id="hasilPengembalianBody"></tbody>
+                </table>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer mt-5 text-white-50" style="background-color: #0f2944 !important;">
+    <div class="container py-4 text-center text-md-start">
+      <small>&copy; 2026 Dashboard Perpustakaan Universitas - Sistem Internal.</small>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="./data/anggota.js"></script>
+  <script src="./data/buku.js"></script>
+  <script src="./data/peminjaman.js"></script>
+  <script>
+    const tanggal = document.getElementById('tanggal');
+    const totalPeminjaman = document.getElementById('total-peminjaman');
+    const totalPengembalian = document.getElementById('total-pengembalian');
+    const totalTerlambat = document.getElementById('total-terlambat');
+    const tabelPeminjaman = document.getElementById('tabel-peminjaman');
+
+    tanggal.innerText = new Date().toLocaleDateString('id-ID', { year: "numeric", month: "long", day: "2-digit" });
+
+    totalPeminjaman.innerText = peminjaman.length;
+    totalPengembalian.innerText = peminjaman.filter(
+      (p) => p.status !== "Dipinjam"
+    ).length;
+    totalTerlambat.innerText = peminjaman.filter(
+      (p) => p.status === "Terlambat"
+    ).length;
+
+    function tampilkanPeminjaman(peminjaman) {
+      peminjaman.sort((a, b) => {
+        if (a.status === "Dipinjam" && b.status !== "Dipinjam") return -1;
+        if (a.status !== "Dipinjam" && b.status === "Dipinjam") return 1;
+        return new Date(b.tanggalPeminjaman) - new Date(a.tanggalPeminjaman);
+      });
+
+      let listPeminjaman = '';
+
+      peminjaman.forEach((peminjaman) => {
+        const status = peminjaman.status === "Dikembalikan"
+          ? `<span class="badge bg-success-subtle text-success border border-success-subtle rounded-pill px-2.5 py-1.5">${peminjaman.status}</span>`
+          : peminjaman.status === "Dipinjam" ?
+            `<span class="badge bg-info-subtle text-info border border-info-subtle rounded-pill px-2.5 py-1.5">${peminjaman.status}</span>` :
+            `<span class="badge bg-danger-subtle text-danger border border-danger-subtle rounded-pill px-2.5 py-1.5">${peminjaman.status}</span>`;
+
+        listPeminjaman += `
+        <tr>
+            <td>${peminjaman.id}</td>
+            <td class="fw-semibold">${cariAnggotaBerdasarkanId(peminjaman.idAnggota).nama}</td>
+            <td>${detailBuku(peminjaman.idBuku).judul}</td>
+            <td>${peminjaman.tanggalPeminjaman}</td>
+            <td>${peminjaman.tanggalJatuhTempo}</td>
+            <td>${status}</td>
+          </tr>
+      `;
+      });
+      tabelPeminjaman.innerHTML = listPeminjaman;
+    }
+
+    tampilkanPeminjaman(peminjaman);
+  </script>
+</body>
+
 </html>

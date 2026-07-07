@@ -1,234 +1,323 @@
 <!DOCTYPE html>
 <html lang="id">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Perpustakaan Universitas - Beranda</title>
-    <link rel="stylesheet" href="style.css" />
-  </head>
-  <body>
-    <header class="navbar">
-      <div class="container navbar-inner">
-        <a href="index.html" class="brand">
-          <span class="brand-logo"></span>
-          <span>Perpustakaan Universitas</span>
-        </a>
-        <nav class="nav-links">
-          <a class="active" href="index.html">Beranda</a>
-          <a href="#koleksi">Koleksi</a>
-          <a href="#layanan">Layanan</a>
-          <a href="#agenda">Agenda</a>
-          <a href="dashboard.html">Dashboard</a>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Perpustakaan Universitas - Beranda</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Poppins:wght@600;800&display=swap"
+    rel="stylesheet" />
+  <style>
+    :root {
+      --bs-primary: #1f4b7a;
+      --bs-primary-hover: #16385b;
+      --bs-font-sans-serif: "Inter", sans-serif;
+      --bs-body-font-family: var(--bs-font-sans-serif);
+    }
+
+    body {
+      background: linear-gradient(180deg, #f8fbff 0%, #f3f7fc 55%, #eef3f9 100%);
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    .navbar-brand {
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .brand-logo {
+      width: 40px;
+      aspect-ratio: 1;
+      border-radius: 50%;
+      background: radial-gradient(circle at top, #2f8f9d, #1f4b7a 70%);
+      box-shadow: inset 0 0 0 3px rgba(255, 255, 255, 0.16);
+    }
+
+    .bg-primary-custom {
+      background-color: #1f4b7a !important;
+    }
+
+    .text-primary-custom {
+      color: #16385b !important;
+    }
+
+    .text-muted-custom {
+      color: #5d6b7e !important;
+    }
+
+    .nav-link.active {
+      border-bottom: 2px solid #2f8f9d;
+    }
+  </style>
+</head>
+
+<body>
+  <header class="navbar navbar-expand-md sticky-top bg-white bg-opacity-75 border-bottom navbar-light"
+    style="backdrop-filter: blur(12px);">
+    <div class="container py-2">
+      <a href="index.html" class="navbar-brand d-flex align-items-center gap-2 fw-800 text-primary-custom">
+        <span class="brand-logo d-inline-block"></span>
+        <span>Perpustakaan Universitas</span>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+        <nav class="navbar-nav gap-2 fw-semibold text-end">
+          <a class="nav-link active text-primary" href="index.html">Beranda</a>
+          <a class="nav-link text-muted-custom" href="#koleksi">Koleksi</a>
+          <a class="nav-link text-muted-custom" href="#layanan">Layanan</a>
+          <a class="nav-link text-muted-custom" href="#agenda">Agenda</a>
+          <a class="nav-link text-muted-custom" href="dashboard.html">Dashboard</a>
         </nav>
       </div>
-    </header>
+    </div>
+  </header>
 
-    <main>
-      <section class="hero">
-        <div class="container hero-grid">
-          <div>
-            <span class="badge">Perpustakaan Digital Kampus</span>
-            <h1>Pusat Literasi dan Riset untuk Mahasiswa Modern</h1>
-            <p>
+  <main>
+    <section class="hero py-5">
+      <div class="container">
+        <div class="row align-items-center g-4">
+          <div class="col-lg-7">
+            <span class="badge rounded-pill text-uppercase text-primary px-3 py-2 border mb-3"
+              style="background: rgba(31, 75, 122, 0.1); border-color: rgba(31, 75, 122, 0.2) !important;">
+              Perpustakaan Digital Kampus
+            </span>
+            <h1 class="display-5 fw-bold text-primary-custom mb-3">Pusat Literasi dan Riset untuk Mahasiswa Modern</h1>
+            <p class="text-muted-custom mb-4" style="max-width: 56ch;">
               Temukan ribuan koleksi buku, jurnal, dan e-resources untuk mendukung
               pembelajaran, penelitian, serta pengembangan akademik Anda.
             </p>
-            <div class="hero-cta">
-              <a class="btn btn-primary" href="#koleksi">Jelajahi Koleksi</a>
-              <a class="btn btn-secondary" href="dashboard.html">Masuk Dashboard</a>
+            <div class="d-flex flex-wrap gap-2">
+              <a class="btn btn-primary bg-primary-custom border-0 rounded-pill px-4 py-2 shadow-sm"
+                href="#koleksi">Jelajahi Koleksi</a>
+              <a class="btn btn-outline-secondary rounded-pill px-4 py-2 bg-white text-primary-custom"
+                href="dashboard.html">Masuk Dashboard</a>
             </div>
           </div>
-          <div class="hero-card">
-            <h3 class="section-title">Ringkasan Koleksi</h3>
-            <p class="section-subtitle">Data koleksi aktif tahun akademik 2026.</p>
-            <div class="stats">
-              <div class="stat-item">
-                <h4>12.450+</h4>
-                <p>Buku Cetak</p>
-              </div>
-              <div class="stat-item">
-                <h4>8.900+</h4>
-                <p>E-Book</p>
-              </div>
-              <div class="stat-item">
-                <h4>2.150+</h4>
-                <p>Jurnal</p>
+          <div class="col-lg-5">
+            <div class="card p-4 rounded-4 shadow-sm border">
+              <h3 class="h4 text-primary-custom fw-bold mb-1">Ringkasan Koleksi</h3>
+              <p class="small text-muted-custom mb-4">Data koleksi aktif tahun akademik 2026.</p>
+              <div class="row g-2 text-center">
+                <div class="col-4">
+                  <div class="p-2 border rounded-3 text-start"
+                    style="background: #f7fbff; border-color: #d8e8fa !important;">
+                    <h4 class="h5 fw-bold mb-1 text-primary">12.450+</h4>
+                    <p class="small text-muted mb-0">Buku Cetak</p>
+                  </div>
+                </div>
+                <div class="col-4">
+                  <div class="p-2 border rounded-3 text-start"
+                    style="background: #f7fbff; border-color: #d8e8fa !important;">
+                    <h4 class="h5 fw-bold mb-1 text-primary">8.900+</h4>
+                    <p class="small text-muted mb-0">E-Book</p>
+                  </div>
+                </div>
+                <div class="col-4">
+                  <div class="p-2 border rounded-3 text-start"
+                    style="background: #f7fbff; border-color: #d8e8fa !important;">
+                    <h4 class="h5 fw-bold mb-1 text-primary">2.150+</h4>
+                    <p class="small text-muted mb-0">Jurnal</p>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </section>
+      </div>
+    </section>
 
-      <section class="search-bar">
-        <div class="container">
-          <form class="search-panel">
-            <input class="input" type="text" placeholder="Cari judul, penulis, atau ISBN..." />
-            <select class="select">
-              <option>Semua Fakultas</option>
-              <option>Teknik</option>
-              <option>Ekonomi</option>
-              <option>Hukum</option>
-            </select>
-            <select class="select">
-              <option>Semua Jenis</option>
-              <option>Buku</option>
-              <option>Jurnal</option>
-              <option>Skripsi</option>
-            </select>
-            <select class="select">
-              <option>Tahun Terbaru</option>
-              <option>2026</option>
-              <option>2025</option>
-              <option>2024</option>
-            </select>
-            <button class="btn btn-primary" type="button">Cari</button>
-          </form>
-        </div>
-      </section>
+    <section class="search-bar position-relative" style="z-index: 4; margin-top: -1rem;">
+      <div class="container">
+        <form class="card p-3 shadow rounded-3 border">
+          <div class="row g-2 align-items-center">
+            <div class="col-md-4 col-12">
+              <input class="form-control py-2" type="text" placeholder="Cari judul, penulis, atau ISBN..." />
+            </div>
+            <div class="col-md-2 col-6">
+              <select class="form-select py-2">
+                <option>Semua Fakultas</option>
+                <option>Teknik</option>
+                <option>Ekonomi</option>
+                <option>Hukum</option>
+              </select>
+            </div>
+            <div class="col-md-2 col-6">
+              <select class="form-select py-2">
+                <option>Semua Jenis</option>
+                <option>Buku</option>
+                <option>Jurnal</option>
+                <option>Skripsi</option>
+              </select>
+            </div>
+            <div class="col-md-2 col-6">
+              <select class="form-select py-2">
+                <option>Tahun Terbaru</option>
+                <option>2026</option>
+                <option>2025</option>
+                <option>2024</option>
+              </select>
+            </div>
+            <div class="col-md-2 col-6 d-grid">
+              <button class="btn btn-primary bg-primary-custom border-0 py-2 rounded-3" type="button">Cari</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </section>
 
-      <section id="koleksi" class="section">
-        <div class="container">
-          <h2 class="section-title">Koleksi Populer</h2>
-          <p class="section-subtitle">
-            Pilihan buku yang paling sering dipinjam dan direkomendasikan oleh dosen.
-          </p>
-          <div class="books-grid">
-            <article class="book-card">
-              <div class="book-cover">
-                <img
+    <section id="koleksi" class="py-5 mt-4">
+      <div class="container">
+        <h2 class="h3 fw-bold text-primary-custom mb-1">Koleksi Populer</h2>
+        <p class="text-muted-custom mb-4" style="max-width: 65ch;">
+          Pilihan buku yang paling sering dipinjam dan direkomendasikan oleh dosen.
+        </p>
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-3" id="tempat-buku">
+          <div class="col">
+            <article class="card h-100 shadow-sm border rounded-3 overflow-hidden book-card-hover">
+              <div style="height: 220px; background: linear-gradient(180deg, #dde7f4, #cfdcee);">
+                <img class="w-100 h-100 object-fit-cover"
                   src="https://images.unsplash.com/photo-1481627834876-b7833e8f5570?auto=format&fit=crop&w=600&q=80"
-                  alt="Cover buku Dasar-Dasar Kecerdasan Buatan"
-                />
+                  alt="Cover buku Dasar-Dasar Kecerdasan Buatan" />
               </div>
-              <div class="book-body">
-                <h3 class="book-title">Dasar-Dasar Kecerdasan Buatan</h3>
-                <p class="book-meta">A. Pratama • Informatika</p>
-                <div class="book-footer">
-                  <span class="availability">Tersedia</span>
-                  <a href="#" class="btn btn-secondary">Detail</a>
+              <div class="card-body p-3 d-flex flex-column justify-content-between">
+                <div>
+                  <h3 class="h6 card-title fw-bold text-primary-custom mb-1">Dasar-Dasar Kecerdasan Buatan</h3>
+                  <p class="small text-muted-custom mb-3">A. Pratama • Informatika</p>
                 </div>
-              </div>
-            </article>
-
-            <article class="book-card">
-              <div class="book-cover">
-                <img
-                  src="https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&w=600&q=80"
-                  alt="Cover buku Metodologi Penelitian Ilmiah"
-                />
-              </div>
-              <div class="book-body">
-                <h3 class="book-title">Metodologi Penelitian Ilmiah</h3>
-                <p class="book-meta">S. Ramadhan • Umum</p>
-                <div class="book-footer">
-                  <span class="availability unavailable">Dipinjam</span>
-                  <a href="#" class="btn btn-secondary">Detail</a>
-                </div>
-              </div>
-            </article>
-
-            <article class="book-card">
-              <div class="book-cover">
-                <img
-                  src="https://images.unsplash.com/photo-1495446815901-a7297e633e8d?auto=format&fit=crop&w=600&q=80"
-                  alt="Cover buku Manajemen Keuangan Modern"
-                />
-              </div>
-              <div class="book-body">
-                <h3 class="book-title">Manajemen Keuangan Modern</h3>
-                <p class="book-meta">N. Kencana • Ekonomi</p>
-                <div class="book-footer">
-                  <span class="availability">Tersedia</span>
-                  <a href="#" class="btn btn-secondary">Detail</a>
-                </div>
-              </div>
-            </article>
-
-            <article class="book-card">
-              <div class="book-cover">
-                <img
-                  src="https://images.unsplash.com/photo-1473755504818-b72b6dfdc226?auto=format&fit=crop&w=600&q=80"
-                  alt="Cover buku Hukum Perdata Indonesia"
-                />
-              </div>
-              <div class="book-body">
-                <h3 class="book-title">Hukum Perdata Indonesia</h3>
-                <p class="book-meta">R. Prawira • Hukum</p>
-                <div class="book-footer">
-                  <span class="availability">Tersedia</span>
-                  <a href="#" class="btn btn-secondary">Detail</a>
+                <div class="d-flex align-items-center justify-content-between">
+                  <span class="badge text-success rounded-pill px-2.5 py-1.5"
+                    style="background: #dcfce7; border: 1px solid #bbf7d0;">Tersedia</span>
+                  <a href="#"
+                    class="btn btn-sm btn-outline-secondary rounded-pill bg-white text-primary-custom border px-3">Detail</a>
                 </div>
               </div>
             </article>
           </div>
         </div>
-      </section>
+      </div>
+    </section>
 
-      <section id="layanan" class="section">
-        <div class="container panel-grid">
-          <article class="panel">
-            <h3>Layanan Unggulan</h3>
-            <div class="announcement">
-              <strong>Ruang Baca 24 Jam</strong>
-              <span>Area belajar nyaman dengan akses Wi-Fi dan stop kontak.</span>
-            </div>
-            <div class="announcement">
-              <strong>Konsultasi Referensi</strong>
-              <span>Bantuan pencarian jurnal dan sitasi oleh pustakawan.</span>
-            </div>
-            <div class="announcement">
-              <strong>Akses E-Resources</strong>
-              <span>Database Scopus, IEEE, dan Springer untuk sivitas akademika.</span>
-            </div>
-          </article>
-          <article id="agenda" class="panel">
-            <h3>Agenda Perpustakaan</h3>
-            <div class="announcement">
-              <strong>Pelatihan Penelusuran Jurnal</strong>
-              <span>12 Mei 2026 • Ruang Multimedia</span>
-            </div>
-            <div class="announcement">
-              <strong>Workshop Sitasi Mendeley</strong>
-              <span>18 Mei 2026 • Lab Komputer 2</span>
-            </div>
-            <div class="announcement">
-              <strong>Bedah Buku Dosen Tamu</strong>
-              <span>25 Mei 2026 • Aula Perpustakaan</span>
-            </div>
-          </article>
+    <section id="layanan" class="py-5">
+      <div class="container">
+        <div class="row g-4">
+          <div class="col-md-6">
+            <article class="card p-4 h-100 shadow-sm border rounded-3">
+              <h3 class="h4 fw-bold text-primary-custom mb-3">Layanan Unggulan</h3>
+              <div class="py-2 border-bottom border-dashed">
+                <strong class="d-block text-dark mb-1">Ruang Baca 24 Jam</strong>
+                <span class="small text-muted-custom">Area belajar nyaman dengan akses Wi-Fi dan stop kontak.</span>
+              </div>
+              <div class="py-2 border-bottom border-dashed">
+                <strong class="d-block text-dark mb-1">Konsultasi Referensi</strong>
+                <span class="small text-muted-custom">Bantuan pencarian jurnal dan sitasi oleh pustakawan.</span>
+              </div>
+              <div class="py-2">
+                <strong class="d-block text-dark mb-1">Akses E-Resources</strong>
+                <span class="small text-muted-custom">Database Scopus, IEEE, dan Springer untuk sivitas
+                  akademika.</span>
+              </div>
+            </article>
+          </div>
+
+          <div class="col-md-6" id="agenda">
+            <article class="card p-4 h-100 shadow-sm border rounded-3">
+              <h3 class="h4 fw-bold text-primary-custom mb-3">Agenda Perpustakaan</h3>
+              <div class="py-2 border-bottom border-dashed">
+                <strong class="d-block text-dark mb-1">Pelatihan Penelusuran Jurnal</strong>
+                <span class="small text-muted-custom">12 Mei 2026 • Ruang Multimedia</span>
+              </div>
+              <div class="py-2 border-bottom border-dashed">
+                <strong class="d-block text-dark mb-1">Workshop Sitasi Mendeley</strong>
+                <span class="small text-muted-custom">18 Mei 2026 • Lab Komputer 2</span>
+              </div>
+              <div class="py-2">
+                <strong class="d-block text-dark mb-1">Bedah Buku Dosen Tamu</strong>
+                <span class="small text-muted-custom">25 Mei 2026 • Aula Perpustakaan</span>
+              </div>
+            </article>
+          </div>
         </div>
-      </section>
-    </main>
+      </div>
+    </section>
+  </main>
 
-    <footer class="footer">
-      <div class="container footer-grid">
-        <div>
-          <h4>Perpustakaan Universitas</h4>
-          <p>
+  <footer class="footer bg-dark text-white-50 mt-5" style="background-color: #0f2944 !important;">
+    <div class="container py-5">
+      <div class="row g-4">
+        <div class="col-md-5">
+          <h4 class="h5 text-white fw-bold mb-3">Perpustakaan Universitas</h4>
+          <p class="small lh-base">
             Jl. Pendidikan No. 10, Kota Akademik<br />
             Email: library@universitas.ac.id
           </p>
         </div>
-        <div>
-          <h4>Layanan</h4>
-          <ul>
-            <li><a href="#">Keanggotaan</a></li>
-            <li><a href="#">Peminjaman Buku</a></li>
-            <li><a href="#">E-Library</a></li>
+        <div class="col-md-3">
+          <h4 class="h5 text-white fw-bold mb-3">Layanan</h4>
+          <ul class="list-unstyled d-flex flex-column gap-2 small">
+            <li><a href="#" class="text-white-50 text-decoration-none hover-white">Keanggotaan</a></li>
+            <li><a href="#" class="text-white-50 text-decoration-none hover-white">Peminjaman Buku</a></li>
+            <li><a href="#" class="text-white-50 text-decoration-none hover-white">E-Library</a></li>
           </ul>
         </div>
-        <div>
-          <h4>Jam Operasional</h4>
-          <ul>
+        <div class="col-md-4">
+          <h4 class="h5 text-white fw-bold mb-3">Jam Operasional</h4>
+          <ul class="list-unstyled d-flex flex-column gap-2 small">
             <li>Senin - Jumat: 08.00 - 21.00</li>
             <li>Sabtu: 09.00 - 15.00</li>
             <li>Minggu: Tutup</li>
           </ul>
         </div>
       </div>
-      <div class="container footer-bottom">
+      <hr class="mt-4 mb-3 border-secondary" />
+      <div class="d-flex justify-content-between small text-white-50">
         <small>&copy; 2026 Perpustakaan Universitas. Semua Hak Dilindungi.</small>
       </div>
-    </footer>
-  </body>
+    </div>
+  </footer>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="./data/buku.js"></script>
+  <script src="./data/anggota.js"></script>
+  <script src="./data/peminjaman.js"></script>
+  <script>
+    const tempatBuku = document.getElementById('tempat-buku');
+
+    function tampilkanBuku(buku) {
+      let listCardBuku = '';
+
+      buku.forEach((buku) => {
+        const badgeStatus = buku.ketersediaan
+          ? `<span class="badge text-success rounded-pill px-2.5 py-1.5" style="background: #dcfce7; border: 1px solid #bbf7d0;">Tersedia</span>`
+          : `<span class="badge text-danger rounded-pill px-2.5 py-1.5" style="background: #fee2e2; border: 1px solid #fecaca;">Tidak Tersedia</span>`;
+
+        listCardBuku += `
+            <div class="col">
+              <article class="card h-100 shadow-sm border rounded-3 overflow-hidden">
+                <div style="height: 220px; background: linear-gradient(180deg, #dde7f4, #cfdcee);">
+                  <img class="w-100 h-100 object-fit-cover" src="${buku.gambar}" alt="Cover buku ${buku.judul}" />
+                </div>
+                <div class="card-body p-3 d-flex flex-column justify-content-between">
+                  <div>
+                    <h3 class="h6 card-title fw-bold text-primary-custom mb-1">${buku.judul}</h3>
+                    <p class="small text-muted-custom mb-3">${buku.penulis} • ${buku.kategori}</p>
+                  </div>
+                  <div class="d-flex align-items-center justify-content-between">
+                    ${badgeStatus}
+                    <a href="#" class="btn btn-sm btn-outline-secondary rounded-pill bg-white text-primary-custom border px-3">Detail</a>
+                  </div>
+                </div>
+              </article>
+            </div>
+          `;
+      });
+      tempatBuku.innerHTML = listCardBuku;
+    } 
+    tampilkanBuku(buku.slice(0,4));
+  </script>
+</body>
+
 </html>
