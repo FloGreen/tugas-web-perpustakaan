@@ -71,8 +71,9 @@
             <label for="deskripsi" class="form-label small fw-semibold">Deskripsi</label>
             <textarea id="deskripsi" class="form-control" rows="3" placeholder="Ringkasan buku..."></textarea>
           </div>
-          <div class="col-12">
-            <button class="btn btn-primary bg-primary-custom border-0 rounded-2 px-4" type="submit">Simpan Data Buku</button>
+          <div class="col-12 d-flex gap-2">
+            <button id="btnSubmitBuku" class="btn btn-primary bg-primary-custom border-0 rounded-2 px-4" type="submit">Simpan Data Buku</button>
+            <button id="btnBatalBuku" class="btn btn-outline-secondary rounded-2 px-4" type="button">Batal Edit</button>
           </div>
         </form>
       </div>
@@ -86,6 +87,7 @@
               <th>Penulis</th>
               <th>Kategori</th>
               <th>Stok</th>
+              <th>Aksi</th>
             </tr>
           </thead>
           <tbody id="hasilBukuBody"></tbody>

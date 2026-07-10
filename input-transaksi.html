@@ -71,8 +71,9 @@
                 <label for="pinjam-petugas" class="form-label small fw-semibold">Petugas</label>
                 <input id="pinjam-petugas" class="form-control" type="text" placeholder="Nama petugas" required />
               </div>
-              <div class="col-12">
-                <button class="btn btn-primary bg-primary-custom border-0 w-100 rounded-2" type="submit">Simpan Peminjaman</button>
+              <div class="col-12 d-flex gap-2">
+                <button id="btnSubmitPeminjaman" class="btn btn-primary bg-primary-custom border-0 rounded-2 flex-grow-1" type="submit">Simpan Peminjaman</button>
+                <button id="btnBatalPeminjaman" class="btn btn-outline-secondary rounded-2" type="button">Batal</button>
               </div>
             </form>
           </div>
@@ -113,8 +114,9 @@
                   <option>Terlambat</option>
                 </select>
               </div>
-              <div class="col-12">
-                <button class="btn btn-primary bg-primary-custom border-0 w-100 rounded-2" type="submit">Simpan Pengembalian</button>
+              <div class="col-12 d-flex gap-2">
+                <button id="btnSubmitPengembalian" class="btn btn-primary bg-primary-custom border-0 rounded-2 flex-grow-1" type="submit">Simpan Pengembalian</button>
+                <button id="btnBatalPengembalian" class="btn btn-outline-secondary rounded-2" type="button">Batal</button>
               </div>
             </form>
           </div>
@@ -136,6 +138,7 @@
                   <th>Tgl Pinjam</th>
                   <th>Jatuh Tempo</th>
                   <th>Status</th>
+                  <th>Aksi</th>
                 </tr>
               </thead>
               <tbody id="hasilPeminjamanBody"></tbody>
@@ -153,6 +156,7 @@
                   <th>Tanggal</th>
                   <th>Status</th>
                   <th>Denda</th>
+                  <th>Aksi</th>
                 </tr>
               </thead>
               <tbody id="hasilPengembalianBody"></tbody>

@@ -70,8 +70,9 @@
             <label for="anggota-alamat" class="form-label small fw-semibold">Alamat</label>
             <textarea id="anggota-alamat" class="form-control" rows="2" placeholder="Alamat lengkap"></textarea>
           </div>
-          <div class="col-12">
-            <button class="btn btn-primary bg-primary-custom border-0 rounded-2 px-4" type="submit">Simpan Anggota Baru</button>
+          <div class="col-12 d-flex gap-2">
+            <button id="btnSubmitAnggota" class="btn btn-primary bg-primary-custom border-0 rounded-2 px-4" type="submit">Simpan Anggota Baru</button>
+            <button id="btnBatalAnggota" class="btn btn-outline-secondary rounded-2 px-4" type="button">Batal Edit</button>
           </div>
         </form>
       </div>
@@ -85,6 +86,7 @@
               <th>Nama</th>
               <th>NIM/NIP</th>
               <th>Prodi/Unit</th>
+              <th>Aksi</th>
             </tr>
           </thead>
           <tbody id="hasilAnggotaBody"></tbody>

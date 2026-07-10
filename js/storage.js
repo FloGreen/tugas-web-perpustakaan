@@ -3,7 +3,10 @@ const STORAGE_KEYS = {
   anggota: "perpus_anggota",
   peminjaman: "perpus_peminjaman",
   pengembalian: "perpus_pengembalian",
+  seedVersion: "perpus_seed_version",
 };
+
+const SEED_VERSION = "3";
 
 const GAMBAR_DEFAULT = {
   Informatika:
@@ -56,6 +59,10 @@ function getPeminjamanById(id) {
   return getPeminjaman().find((item) => item.id === id);
 }
 
+function getPengembalianById(id) {
+  return getPengembalian().find((item) => item.id === id);
+}
+
 function generateId(prefix) {
   return `${prefix}-${Date.now().toString().slice(-6)}`;
 }
@@ -86,6 +93,24 @@ function getLatest(items, limit = 5) {
   return [...items]
     .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
     .slice(0, limit);
+}
+
+function daysAgo(n) {
+  const d = new Date();
+  d.setDate(d.getDate() - n);
+  return d.toISOString().slice(0, 10);
+}
+
+function daysFromNow(n) {
+  const d = new Date();
+  d.setDate(d.getDate() + n);
+  return d.toISOString().slice(0, 10);
+}
+
+function isoDaysAgo(n) {
+  const d = new Date();
+  d.setDate(d.getDate() - n);
+  return d.toISOString();
 }
 
 function updateStatusPeminjaman() {
@@ -140,6 +165,32 @@ function addBuku(data) {
   return item;
 }
 
+function updateBuku(id, data) {
+  const buku = getBuku();
+  const index = buku.findIndex((item) => item.id === id);
+  if (index === -1) return null;
+
+  buku[index] = {
+    ...buku[index],
+    judul: data.judul,
+    penulis: data.penulis,
+    kategori: data.kategori,
+    stok: Number(data.stok) || 0,
+    deskripsi: data.deskripsi || "",
+    gambar: data.gambar || GAMBAR_DEFAULT[data.kategori] || GAMBAR_DEFAULT.Umum,
+    ketersediaan: Number(data.stok) > 0,
+  };
+  saveData(STORAGE_KEYS.buku, buku);
+  return buku[index];
+}
+
+function deleteBuku(id) {
+  saveData(
+    STORAGE_KEYS.buku,
+    getBuku().filter((item) => item.id !== id)
+  );
+}
+
 function addAnggota(data) {
   const anggota = getAnggota();
   const item = {
@@ -155,6 +206,38 @@ function addAnggota(data) {
   anggota.unshift(item);
   saveData(STORAGE_KEYS.anggota, anggota);
   return item;
+}
+
+function updateAnggota(id, data) {
+  const anggota = getAnggota();
+  const index = anggota.findIndex((item) => item.id === id);
+  if (index === -1) return null;
+
+  anggota[index] = {
+    ...anggota[index],
+    nama: data.nama,
+    nim: data.nim,
+    prodi: data.prodi,
+    email: data.email,
+    telepon: data.telepon,
+    alamat: data.alamat || "",
+  };
+  saveData(STORAGE_KEYS.anggota, anggota);
+
+  const peminjaman = getPeminjaman();
+  peminjaman.forEach((item) => {
+    if (item.idAnggota === id) item.anggota = data.nama;
+  });
+  saveData(STORAGE_KEYS.peminjaman, peminjaman);
+
+  return anggota[index];
+}
+
+function deleteAnggota(id) {
+  saveData(
+    STORAGE_KEYS.anggota,
+    getAnggota().filter((item) => item.id !== id)
+  );
 }
 
 function addPeminjaman(data) {
@@ -181,11 +264,62 @@ function addPeminjaman(data) {
   if (buku) {
     buku.stok = Math.max(0, buku.stok - 1);
     buku.ketersediaan = buku.stok > 0;
-    const allBuku = getBuku().map((b) => (b.id === buku.id ? buku : b));
-    saveData(STORAGE_KEYS.buku, allBuku);
+    saveData(
+      STORAGE_KEYS.buku,
+      getBuku().map((b) => (b.id === buku.id ? buku : b))
+    );
   }
 
+  updateStatusPeminjaman();
   return item;
+}
+
+function updatePeminjaman(id, data) {
+  const peminjaman = getPeminjaman();
+  const index = peminjaman.findIndex((item) => item.id === id);
+  if (index === -1) return null;
+
+  const anggota = getAnggotaById(data.idAnggota);
+  const buku = getBukuById(data.idBuku);
+
+  peminjaman[index] = {
+    ...peminjaman[index],
+    idAnggota: data.idAnggota,
+    idBuku: data.idBuku,
+    anggota: anggota ? anggota.nama : data.anggota,
+    buku: buku ? buku.judul : data.buku,
+    tanggalPeminjaman: data.tanggalPeminjaman,
+    tanggalJatuhTempo: data.tanggalJatuhTempo,
+    petugas: data.petugas || "",
+  };
+  saveData(STORAGE_KEYS.peminjaman, peminjaman);
+  updateStatusPeminjaman();
+  return peminjaman[index];
+}
+
+function deletePeminjaman(id) {
+  const item = getPeminjamanById(id);
+  if (item && item.status !== "Dikembalikan") {
+    const buku = getBukuById(item.idBuku);
+    if (buku) {
+      buku.stok += 1;
+      buku.ketersediaan = true;
+      saveData(
+        STORAGE_KEYS.buku,
+        getBuku().map((b) => (b.id === buku.id ? buku : b))
+      );
+    }
+  }
+
+  saveData(
+    STORAGE_KEYS.peminjaman,
+    getPeminjaman().filter((p) => p.id !== id)
+  );
+  saveData(
+    STORAGE_KEYS.pengembalian,
+    getPengembalian().filter((p) => p.idPeminjaman !== id)
+  );
+  updateStatusPeminjaman();
 }
 
 function addPengembalian(data) {
@@ -207,17 +341,19 @@ function addPengembalian(data) {
 
   if (peminjamanItem) {
     peminjamanItem.status = "Dikembalikan";
-    const allPeminjaman = getPeminjaman().map((p) =>
-      p.id === peminjamanItem.id ? peminjamanItem : p
+    saveData(
+      STORAGE_KEYS.peminjaman,
+      getPeminjaman().map((p) => (p.id === peminjamanItem.id ? peminjamanItem : p))
     );
-    saveData(STORAGE_KEYS.peminjaman, allPeminjaman);
 
     const buku = getBukuById(peminjamanItem.idBuku);
     if (buku) {
       buku.stok += 1;
       buku.ketersediaan = true;
-      const allBuku = getBuku().map((b) => (b.id === buku.id ? buku : b));
-      saveData(STORAGE_KEYS.buku, allBuku);
+      saveData(
+        STORAGE_KEYS.buku,
+        getBuku().map((b) => (b.id === buku.id ? buku : b))
+      );
     }
   }
 
@@ -225,8 +361,53 @@ function addPengembalian(data) {
   return item;
 }
 
+function updatePengembalian(id, data) {
+  const pengembalian = getPengembalian();
+  const index = pengembalian.findIndex((item) => item.id === id);
+  if (index === -1) return null;
+
+  pengembalian[index] = {
+    ...pengembalian[index],
+    idPeminjaman: data.idPeminjaman,
+    tanggalPengembalian: data.tanggalPengembalian,
+    kondisi: data.kondisi,
+    denda: Number(data.denda) || 0,
+    status: data.status,
+  };
+  saveData(STORAGE_KEYS.pengembalian, pengembalian);
+  updateStatusPeminjaman();
+  return pengembalian[index];
+}
+
+function deletePengembalian(id) {
+  const item = getPengembalianById(id);
+  if (item) {
+    const peminjamanItem = getPeminjamanById(item.idPeminjaman);
+    if (peminjamanItem) {
+      const buku = getBukuById(peminjamanItem.idBuku);
+      if (buku && buku.stok > 0) {
+        buku.stok = Math.max(0, buku.stok - 1);
+        buku.ketersediaan = buku.stok > 0;
+        saveData(
+          STORAGE_KEYS.buku,
+          getBuku().map((b) => (b.id === buku.id ? buku : b))
+        );
+      }
+    }
+  }
+
+  saveData(
+    STORAGE_KEYS.pengembalian,
+    getPengembalian().filter((p) => p.id !== id)
+  );
+  updateStatusPeminjaman();
+}
+
 function seedData() {
-  if (getBuku().length > 0) return;
+  const currentVersion = localStorage.getItem(STORAGE_KEYS.seedVersion);
+  if (currentVersion === SEED_VERSION && getBuku().length >= 5) return;
+
+  const today = new Date().toISOString().slice(0, 10);
 
   const bukuSeed = [
     {
@@ -234,11 +415,11 @@ function seedData() {
       judul: "Dasar-Dasar Kecerdasan Buatan",
       penulis: "A. Pratama",
       kategori: "Informatika",
-      stok: 5,
+      stok: 4,
       deskripsi: "Pengantar konsep AI, machine learning, dan neural network untuk mahasiswa.",
       gambar: GAMBAR_DEFAULT.Informatika,
       ketersediaan: true,
-      createdAt: new Date().toISOString(),
+      createdAt: isoDaysAgo(1),
     },
     {
       id: "BK-002",
@@ -249,29 +430,40 @@ function seedData() {
       deskripsi: "Panduan metode penelitian kuantitatif dan kualitatif untuk skripsi.",
       gambar: GAMBAR_DEFAULT.Umum,
       ketersediaan: true,
-      createdAt: new Date().toISOString(),
+      createdAt: isoDaysAgo(2),
     },
     {
       id: "BK-003",
       judul: "Manajemen Keuangan Modern",
       penulis: "N. Kencana",
       kategori: "Ekonomi",
-      stok: 4,
+      stok: 5,
       deskripsi: "Konsep manajemen keuangan perusahaan dan analisis investasi.",
       gambar: GAMBAR_DEFAULT.Ekonomi,
       ketersediaan: true,
-      createdAt: new Date().toISOString(),
+      createdAt: isoDaysAgo(3),
     },
     {
       id: "BK-004",
       judul: "Hukum Perdata Indonesia",
       penulis: "R. Prawira",
       kategori: "Hukum",
-      stok: 2,
+      stok: 3,
       deskripsi: "Materi hukum perdata dan praktik peradilan di Indonesia.",
       gambar: GAMBAR_DEFAULT.Hukum,
       ketersediaan: true,
-      createdAt: new Date().toISOString(),
+      createdAt: isoDaysAgo(4),
+    },
+    {
+      id: "BK-005",
+      judul: "Algoritma dan Pemrograman",
+      penulis: "D. Wijaya",
+      kategori: "Informatika",
+      stok: 6,
+      deskripsi: "Dasar algoritma, struktur data, dan pemrograman untuk pemula.",
+      gambar: GAMBAR_DEFAULT.Informatika,
+      ketersediaan: true,
+      createdAt: isoDaysAgo(5),
     },
   ];
 
@@ -283,8 +475,8 @@ function seedData() {
       prodi: "Teknik Informatika",
       email: "rina@kampus.ac.id",
       telepon: "081234567890",
-      alamat: "Kota Akademik",
-      createdAt: new Date().toISOString(),
+      alamat: "Jl. Merdeka No. 12, Kota Akademik",
+      createdAt: isoDaysAgo(1),
     },
     {
       id: "AGT-002",
@@ -293,17 +485,40 @@ function seedData() {
       prodi: "Manajemen",
       email: "fikri@kampus.ac.id",
       telepon: "081234567891",
-      alamat: "Kota Akademik",
-      createdAt: new Date().toISOString(),
+      alamat: "Jl. Pendidikan No. 5, Kota Akademik",
+      createdAt: isoDaysAgo(2),
+    },
+    {
+      id: "AGT-003",
+      nama: "Salma Azzahra",
+      nim: "2201003",
+      prodi: "Hukum",
+      email: "salma@kampus.ac.id",
+      telepon: "081234567892",
+      alamat: "Jl. Sudirman No. 8, Kota Akademik",
+      createdAt: isoDaysAgo(3),
+    },
+    {
+      id: "AGT-004",
+      nama: "Dio Prasetyo",
+      nim: "2201004",
+      prodi: "Teknik Informatika",
+      email: "dio@kampus.ac.id",
+      telepon: "081234567893",
+      alamat: "Jl. Gatot Subroto No. 3, Kota Akademik",
+      createdAt: isoDaysAgo(4),
+    },
+    {
+      id: "AGT-005",
+      nama: "Ani Lestari",
+      nim: "2201005",
+      prodi: "Akuntansi",
+      email: "ani@kampus.ac.id",
+      telepon: "081234567894",
+      alamat: "Jl. Ahmad Yani No. 20, Kota Akademik",
+      createdAt: isoDaysAgo(5),
     },
   ];
-
-  saveData(STORAGE_KEYS.buku, bukuSeed);
-  saveData(STORAGE_KEYS.anggota, anggotaSeed);
-
-  const today = new Date().toISOString().slice(0, 10);
-  const nextWeek = new Date();
-  nextWeek.setDate(nextWeek.getDate() + 7);
 
   const peminjamanSeed = [
     {
@@ -313,17 +528,150 @@ function seedData() {
       anggota: "Rina Putri",
       buku: "Dasar-Dasar Kecerdasan Buatan",
       tanggalPeminjaman: today,
-      tanggalJatuhTempo: nextWeek.toISOString().slice(0, 10),
-      petugas: "Admin",
+      tanggalJatuhTempo: daysFromNow(7),
+      petugas: "Admin Perpus",
       status: "Dipinjam",
-      createdAt: new Date().toISOString(),
+      createdAt: isoDaysAgo(0),
+    },
+    {
+      id: "TRX-PJM-002",
+      idAnggota: "AGT-002",
+      idBuku: "BK-002",
+      anggota: "Fikri Maulana",
+      buku: "Metodologi Penelitian Ilmiah",
+      tanggalPeminjaman: today,
+      tanggalJatuhTempo: daysFromNow(7),
+      petugas: "Admin Perpus",
+      status: "Dipinjam",
+      createdAt: isoDaysAgo(1),
+    },
+    {
+      id: "TRX-PJM-003",
+      idAnggota: "AGT-003",
+      idBuku: "BK-003",
+      anggota: "Salma Azzahra",
+      buku: "Manajemen Keuangan Modern",
+      tanggalPeminjaman: daysAgo(10),
+      tanggalJatuhTempo: daysAgo(3),
+      petugas: "Admin Perpus",
+      status: "Terlambat",
+      createdAt: isoDaysAgo(2),
+    },
+    {
+      id: "TRX-PJM-004",
+      idAnggota: "AGT-004",
+      idBuku: "BK-004",
+      anggota: "Dio Prasetyo",
+      buku: "Hukum Perdata Indonesia",
+      tanggalPeminjaman: daysAgo(14),
+      tanggalJatuhTempo: daysAgo(7),
+      petugas: "Admin Perpus",
+      status: "Dikembalikan",
+      createdAt: isoDaysAgo(3),
+    },
+    {
+      id: "TRX-PJM-005",
+      idAnggota: "AGT-005",
+      idBuku: "BK-005",
+      anggota: "Ani Lestari",
+      buku: "Algoritma dan Pemrograman",
+      tanggalPeminjaman: daysAgo(12),
+      tanggalJatuhTempo: daysAgo(5),
+      petugas: "Admin Perpus",
+      status: "Dikembalikan",
+      createdAt: isoDaysAgo(4),
+    },
+    {
+      id: "TRX-PJM-006",
+      idAnggota: "AGT-001",
+      idBuku: "BK-003",
+      anggota: "Rina Putri",
+      buku: "Manajemen Keuangan Modern",
+      tanggalPeminjaman: daysAgo(20),
+      tanggalJatuhTempo: daysAgo(13),
+      petugas: "Admin Perpus",
+      status: "Dikembalikan",
+      createdAt: isoDaysAgo(10),
+    },
+    {
+      id: "TRX-PJM-007",
+      idAnggota: "AGT-002",
+      idBuku: "BK-004",
+      anggota: "Fikri Maulana",
+      buku: "Hukum Perdata Indonesia",
+      tanggalPeminjaman: daysAgo(18),
+      tanggalJatuhTempo: daysAgo(11),
+      petugas: "Admin Perpus",
+      status: "Dikembalikan",
+      createdAt: isoDaysAgo(11),
+    },
+    {
+      id: "TRX-PJM-008",
+      idAnggota: "AGT-003",
+      idBuku: "BK-005",
+      anggota: "Salma Azzahra",
+      buku: "Algoritma dan Pemrograman",
+      tanggalPeminjaman: daysAgo(16),
+      tanggalJatuhTempo: daysAgo(9),
+      petugas: "Admin Perpus",
+      status: "Dikembalikan",
+      createdAt: isoDaysAgo(12),
     },
   ];
 
-  bukuSeed[0].stok = 4;
-  bukuSeed[0].ketersediaan = true;
+  const pengembalianSeed = [
+    {
+      id: "TRX-KBL-001",
+      idPeminjaman: "TRX-PJM-004",
+      tanggalPengembalian: today,
+      kondisi: "Baik",
+      denda: 0,
+      status: "Tepat Waktu",
+      createdAt: isoDaysAgo(0),
+    },
+    {
+      id: "TRX-KBL-002",
+      idPeminjaman: "TRX-PJM-005",
+      tanggalPengembalian: today,
+      kondisi: "Baik",
+      denda: 5000,
+      status: "Terlambat",
+      createdAt: isoDaysAgo(1),
+    },
+    {
+      id: "TRX-KBL-003",
+      idPeminjaman: "TRX-PJM-006",
+      tanggalPengembalian: daysAgo(13),
+      kondisi: "Rusak Ringan",
+      denda: 10000,
+      status: "Terlambat",
+      createdAt: isoDaysAgo(2),
+    },
+    {
+      id: "TRX-KBL-004",
+      idPeminjaman: "TRX-PJM-007",
+      tanggalPengembalian: daysAgo(11),
+      kondisi: "Baik",
+      denda: 0,
+      status: "Tepat Waktu",
+      createdAt: isoDaysAgo(3),
+    },
+    {
+      id: "TRX-KBL-005",
+      idPeminjaman: "TRX-PJM-008",
+      tanggalPengembalian: daysAgo(9),
+      kondisi: "Baik",
+      denda: 0,
+      status: "Tepat Waktu",
+      createdAt: isoDaysAgo(4),
+    },
+  ];
+
   saveData(STORAGE_KEYS.buku, bukuSeed);
+  saveData(STORAGE_KEYS.anggota, anggotaSeed);
   saveData(STORAGE_KEYS.peminjaman, peminjamanSeed);
+  saveData(STORAGE_KEYS.pengembalian, pengembalianSeed);
+  localStorage.setItem(STORAGE_KEYS.seedVersion, SEED_VERSION);
 }
 
 seedData();
