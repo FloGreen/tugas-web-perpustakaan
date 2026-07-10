@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Input Anggota - Dashboard Perpustakaan</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Poppins:wght@600;800&display=swap" rel="stylesheet" />
+  <style>
+    body { background: linear-gradient(180deg, #f8fbff 0%, #f3f7fc 55%, #eef3f9 100%); }
+    h1, h2, h3, .navbar-brand { font-family: 'Poppins', sans-serif; }
+    .brand-logo { width: 40px; aspect-ratio: 1; border-radius: 50%; background: radial-gradient(circle at top, #2f8f9d, #1f4b7a 70%); }
+    .bg-primary-custom { background-color: #1f4b7a !important; }
+    .text-primary-custom { color: #16385b !important; }
+    .text-muted-custom { color: #5d6b7e !important; }
+  </style>
+</head>
+<body>
+  <header class="navbar navbar-expand-md sticky-top bg-white bg-opacity-75 border-bottom" style="backdrop-filter: blur(12px);">
+    <div class="container py-2">
+      <a href="dashboard.html" class="navbar-brand d-flex align-items-center gap-2 fw-bold text-primary-custom">
+        <span class="brand-logo d-inline-block"></span>
+        <span>Input Anggota</span>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"><span class="navbar-toggler-icon"></span></button>
+      <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+        <nav class="navbar-nav gap-2 fw-semibold">
+          <a class="nav-link text-muted-custom" href="dashboard.html">Dashboard</a>
+          <a class="nav-link text-muted-custom" href="input-buku.html">Input Buku</a>
+          <a class="nav-link active text-primary" href="input-anggota.html">Input Anggota</a>
+          <a class="nav-link text-muted-custom" href="input-transaksi.html">Peminjaman & Pengembalian</a>
+          <a class="nav-link text-muted-custom" href="index.html">Website</a>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <main class="py-5">
+    <div class="container">
+      <h1 class="h3 fw-bold text-primary-custom mb-1">Input Anggota Baru</h1>
+      <p class="text-muted-custom mb-4">Registrasi data anggota perpustakaan.</p>
+
+      <div class="card p-4 rounded-3 shadow-sm border mb-4">
+        <form id="formAnggota" class="row g-3">
+          <div class="col-md-6">
+            <label for="anggota-id" class="form-label small fw-semibold">ID Anggota</label>
+            <input id="anggota-id" class="form-control" type="text" placeholder="Contoh: AGT-3051" required />
+          </div>
+          <div class="col-md-6">
+            <label for="anggota-nama" class="form-label small fw-semibold">Nama Lengkap</label>
+            <input id="anggota-nama" class="form-control" type="text" placeholder="Nama lengkap" required />
+          </div>
+          <div class="col-md-6">
+            <label for="anggota-nim" class="form-label small fw-semibold">NIM / NIP</label>
+            <input id="anggota-nim" class="form-control" type="text" placeholder="NIM atau NIP" required />
+          </div>
+          <div class="col-md-6">
+            <label for="anggota-prodi" class="form-label small fw-semibold">Program Studi / Unit</label>
+            <input id="anggota-prodi" class="form-control" type="text" placeholder="Contoh: Teknik Informatika" required />
+          </div>
+          <div class="col-md-6">
+            <label for="anggota-email" class="form-label small fw-semibold">Email</label>
+            <input id="anggota-email" class="form-control" type="email" placeholder="nama@kampus.ac.id" required />
+          </div>
+          <div class="col-md-6">
+            <label for="anggota-telepon" class="form-label small fw-semibold">No. Telepon</label>
+            <input id="anggota-telepon" class="form-control" type="tel" placeholder="08xxxxxxxxxx" required />
+          </div>
+          <div class="col-12">
+            <label for="anggota-alamat" class="form-label small fw-semibold">Alamat</label>
+            <textarea id="anggota-alamat" class="form-control" rows="2" placeholder="Alamat lengkap"></textarea>
+          </div>
+          <div class="col-12">
+            <button class="btn btn-primary bg-primary-custom border-0 rounded-2 px-4" type="submit">Simpan Anggota Baru</button>
+          </div>
+        </form>
+      </div>
+
+      <h2 class="h5 fw-bold text-primary-custom mb-3">Tabel Hasil Input Anggota (5 Data Terbaru)</h2>
+      <div class="table-responsive shadow-sm rounded-3 border bg-white">
+        <table class="table table-hover align-middle mb-0">
+          <thead class="table-light">
+            <tr>
+              <th>ID Anggota</th>
+              <th>Nama</th>
+              <th>NIM/NIP</th>
+              <th>Prodi/Unit</th>
+            </tr>
+          </thead>
+          <tbody id="hasilAnggotaBody"></tbody>
+        </table>
+      </div>
+    </div>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/utils.js"></script>
+  <script src="js/input-anggota.js"></script>
+</body>
+</html>
